@@ -1,0 +1,9 @@
+# vs data
+.vs/
+.vscode/
+
+# Import cache
+.import/
+
+# Mono
+.mono
