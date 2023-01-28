@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Death's Domain"
-run/main_scene="res://Levels/Labyrinth.tscn"
+run/main_scene="res://scenes/Labyrinth.tscn"
 config/icon="res://icon.png"
 
 [display]
