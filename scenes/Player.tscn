@@ -1,34 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://sprites/player.png" type="Texture" id=1]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
+[ext_resource path="res://sprites/base-player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/player-hand.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Hand.gd" type="Script" id=4]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "default",
 "speed": 2.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
+<<<<<<< HEAD
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
+=======
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
+>>>>>>> develop
 frames = SubResource( 3 )
-frame = 1
-playing = true
+flip_h = true
 
+<<<<<<< HEAD
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -36,3 +48,19 @@ current = true
 position = Vector2( 0.935, -28 )
 scale = Vector2( 2.57631, 3.15865 )
 polygon = PoolVector2Array( -11.6193, 8.54794, -3.46814, 5.69863, 7.40012, 6.33181, 12.058, 8.86453, 5.84752, 11.0807, -3.07999, 11.3973 )
+=======
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+
+[node name="PlayerCam" type="Camera2D" parent="."]
+current = true
+
+[node name="Hand" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="HandSprite" type="AnimatedSprite" parent="Hand"]
+frames = SubResource( 4 )
+flip_h = true
+
+[node name="HandBulletBox" type="Node2D" parent="Hand"]
+position = Vector2( 23, -6 )
+>>>>>>> develop

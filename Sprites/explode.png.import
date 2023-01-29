@@ -2,24 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD
-path="res://.import/tiles.png-d405ff972ee50d6703ee70e0091322bb.stex"
-=======
-path="res://.import/tiles.png-81ca6d37257e12fdf620d4879b0425ed.stex"
->>>>>>> develop
+path="res://.import/explode.png-a3744695391b2c215976c35e312b05c2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD
-source_file="res://Sprites/Tiles/tiles.png"
-dest_files=[ "res://.import/tiles.png-d405ff972ee50d6703ee70e0091322bb.stex" ]
-=======
-source_file="res://sprites/tiles/tiles.png"
-dest_files=[ "res://.import/tiles.png-81ca6d37257e12fdf620d4879b0425ed.stex" ]
->>>>>>> develop
+source_file="res://sprites/explode.png"
+dest_files=[ "res://.import/explode.png-a3744695391b2c215976c35e312b05c2.stex" ]
 
 [params]
 
