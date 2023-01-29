@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://sprites/base-player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/player-hand.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Hand.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+flip_h = true
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+
+[node name="PlayerCam" type="Camera2D" parent="."]
+current = true
+
+[node name="Hand" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="HandSprite" type="AnimatedSprite" parent="Hand"]
+frames = SubResource( 4 )
+flip_h = true
+
+[node name="HandBulletBox" type="Node2D" parent="Hand"]
+position = Vector2( 23, -6 )
