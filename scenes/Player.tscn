@@ -19,18 +19,21 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 playing = true
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCam" type="Camera2D" parent="."]
 current = true
+
+[node name="ShootingPoint" type="Node2D" parent="."]
+position = Vector2( 23, -6 )
