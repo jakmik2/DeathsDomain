@@ -26,21 +26,23 @@ animations = [ {
 } ]
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -27 )
 frames = SubResource( 3 )
 flip_h = true
-
-[node name="PlayerCollider" type="CollisionShape2D" parent="."]
 
 [node name="PlayerCam" type="Camera2D" parent="."]
 current = true
 
 [node name="Hand" type="Node2D" parent="."]
+position = Vector2( 0, -24 )
 script = ExtResource( 4 )
 
 [node name="HandSprite" type="AnimatedSprite" parent="Hand"]
@@ -49,3 +51,6 @@ flip_h = true
 
 [node name="HandBulletBox" type="Node2D" parent="Hand"]
 position = Vector2( 23, -6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -25, 4, -18, -3, -3, -6, 15, -3, 26, 4, 16, 11, -1, 14, -18, 12 )
