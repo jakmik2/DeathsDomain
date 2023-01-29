@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sprites/base-player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://sprites/player-hand.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Hand.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/BloodOverlay.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -12,6 +13,37 @@ animations = [ {
 "name": "default",
 "speed": 2.0
 } ]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Pain"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.929412 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
@@ -40,6 +72,19 @@ flip_h = true
 
 [node name="PlayerCam" type="Camera2D" parent="."]
 current = true
+
+[node name="TextureRect" type="TextureRect" parent="PlayerCam"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -480.0
+margin_top = -270.0
+margin_right = 479.0
+margin_bottom = 268.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCam"]
+anims/Pain = SubResource( 6 )
+anims/RESET = SubResource( 7 )
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2( 0, -24 )
