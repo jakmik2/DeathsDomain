@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprites/monster-sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Mob.gd" type="Script" id=2]
@@ -27,9 +27,6 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 17.0294
-
 [node name="Mob" type="RigidBody2D"]
 gravity_scale = 0.0
 script = ExtResource( 2 )
@@ -38,12 +35,12 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -35 )
 frames = SubResource( 5 )
-frame = 2
+frame = 1
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 5 )
-shape = SubResource( 6 )
-
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -13, -6, -21, 2, -13, 11, 14, 11, 22, 2, 14, -6 )

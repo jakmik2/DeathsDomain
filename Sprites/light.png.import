@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wall.png-02b6fb482d7c1880bebe35a8343f30e6.stex"
+path="res://.import/light.png-bf179afb193a5d6b9a4b9af8792c7faf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/wall.png"
-dest_files=[ "res://.import/wall.png-02b6fb482d7c1880bebe35a8343f30e6.stex" ]
+source_file="res://Sprites/light.png"
+dest_files=[ "res://.import/light.png-bf179afb193a5d6b9a4b9af8792c7faf.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
