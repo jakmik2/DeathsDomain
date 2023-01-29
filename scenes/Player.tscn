@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -26,7 +27,6 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -36,3 +36,9 @@ current = true
 position = Vector2( 0.935, -28 )
 scale = Vector2( 2.57631, 3.15865 )
 polygon = PoolVector2Array( -11.6193, 8.54794, -3.46814, 5.69863, 7.40012, 6.33181, 12.058, 8.86453, 5.84752, 11.0807, -3.07999, 11.3973 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+texture = ExtResource( 2 )
+energy = 0.52
+shadow_enabled = true

@@ -88,7 +88,7 @@ position = Vector2( 312, 59 )
 position = Vector2( 149, 168 )
 
 [node name="Player" parent="YSorter" instance=ExtResource( 1 )]
-position = Vector2( 209, 163 )
+position = Vector2( 225, 112 )
 script = ExtResource( 3 )
 
 [node name="TM-Walls" type="TileMap" parent="YSorter"]
