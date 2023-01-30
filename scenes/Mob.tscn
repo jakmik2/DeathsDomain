@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/animations/monster/monster-idle.tres" type="Animation" id=4]
 [ext_resource path="res://Sprites/monster/monster-death-sheet.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/monster/monster-dead.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/monster/monster-sheet.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/monster/monster-attack-sheet.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=10]
 

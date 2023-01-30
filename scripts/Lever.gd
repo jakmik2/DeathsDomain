@@ -16,7 +16,7 @@ func _process(delta):
 			state = "1"
 		else:
 			state = "0"
-		Global.lever_changed()
+		Global.lever_changed(self.get_instance_id())
 	if state == "1":
 		$Sprite.set_frame(0)
 	else:

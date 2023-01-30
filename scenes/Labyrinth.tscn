@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/tiles/tiles.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/TrapTile.tscn" type="PackedScene" id=7]
 
 [sub_resource type="TileSet" id=2]
 0/name = "tiles.png 0"
@@ -76,13 +77,13 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 368, 4 )
+position = Vector2( 223, 7 )
 
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 596, 268 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 140, 76 )
+position = Vector2( 434, 188 )
 
 [node name="Mob" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 238, 365 )
@@ -94,19 +95,30 @@ cell_size = Vector2( 64, 34 )
 cell_tile_origin = 1
 cell_y_sort = true
 collision_friction = 0.0
-collision_layer = 3
-collision_mask = 3
+collision_layer = 11
+collision_mask = 11
 format = 1
-tile_data = PoolIntArray( -655348, 0, 0, -589814, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -524282, 0, 0, -524281, 0, 0, -524280, 0, 0, -524279, 0, 0, -524278, 0, 0, -524274, 0, 0, -524273, 0, 0, -524272, 0, 0, -524271, 0, 0, -524269, 0, 0, -458750, 0, 0, -458742, 0, 0, -458738, 0, 0, -458735, 0, 0, -458734, 0, 0, -458733, 0, 0, -458732, 0, 0, -458731, 0, 0, -393214, 0, 0, -393206, 0, 0, -393202, 0, 0, -393198, 0, 0, -327679, 0, 0, -327678, 0, 0, -327670, 0, 0, -327669, 0, 0, -327667, 0, 0, -327666, 0, 0, -327662, 0, 0, -327661, 0, 0, -262133, 0, 0, -262125, 0, 0, -262124, 0, 0, -131074, 0, 0, -131073, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131066, 0, 0, -65516, 0, 0, 20, 0, 0, 21, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 196608, 0, 0, 196620, 0, 0, 196622, 0, 0, 196623, 0, 0, 262145, 0, 0, 262146, 0, 0, 262156, 0, 0, 262159, 0, 0, 327682, 0, 0, 327683, 0, 0, 327692, 0, 0, 327697, 0, 0, 393219, 0, 0, 393220, 0, 0, 393228, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393237, 0, 0, 458764, 0, 0, 458773, 0, 0, 524293, 0, 0, 524294, 0, 0, 524300, 0, 0, 589830, 0, 0, 589836, 0, 0, 655366, 0, 0, 655367, 0, 0, 655372, 0, 0 )
+tile_data = PoolIntArray( -655348, 0, 0, -589814, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -524282, 0, 0, -524281, 0, 0, -524280, 0, 0, -524279, 0, 0, -524278, 0, 0, -524274, 0, 0, -524273, 0, 0, -524272, 0, 0, -524271, 0, 0, -524269, 0, 0, -458750, 0, 0, -458742, 0, 0, -458738, 0, 0, -458735, 0, 0, -458734, 0, 0, -458733, 0, 0, -458732, 0, 0, -458731, 0, 0, -393214, 0, 0, -393206, 0, 0, -393202, 0, 0, -393198, 0, 0, -327679, 0, 0, -327670, 0, 0, -327669, 0, 0, -327667, 0, 0, -327666, 0, 0, -327662, 0, 0, -327661, 0, 0, -262133, 0, 0, -262125, 0, 0, -262124, 0, 0, -131074, 0, 0, -131073, 0, 0, -196607, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131066, 0, 0, -65516, 0, 0, 20, 0, 0, 21, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 196608, 0, 0, 196620, 0, 0, 196622, 0, 0, 196623, 0, 0, 262145, 0, 0, 262146, 0, 0, 262156, 0, 0, 262159, 0, 0, 327682, 0, 0, 327683, 0, 0, 327692, 0, 0, 327697, 0, 0, 393219, 0, 0, 393220, 0, 0, 393228, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393237, 0, 0, 458764, 0, 0, 458773, 0, 0, 524293, 0, 0, 524294, 0, 0, 524300, 0, 0, 589830, 0, 0, 589836, 0, 0, 655366, 0, 0, 655367, 0, 0, 655372, 0, 0 )
 
-[node name="Door" parent="YSort" instance=ExtResource( 6 )]
+[node name="TileOpenedDoor" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 179, -42 )
+scale = Vector2( -1, 1 )
+code = "1"
+
+[node name="Levers" type="Node2D" parent="YSort/TileOpenedDoor"]
+
+[node name="TrapTile" parent="YSort/TileOpenedDoor/Levers" instance=ExtResource( 7 )]
+position = Vector2( -14, 4 )
+permanence = true
+
+[node name="ExitDoor" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 396, -41 )
 code = "11"
 
-[node name="Levers" type="Node2D" parent="YSort/Door"]
+[node name="Levers" type="Node2D" parent="YSort/ExitDoor"]
 
-[node name="Lever2" parent="YSort/Door/Levers" instance=ExtResource( 3 )]
+[node name="Lever2" parent="YSort/ExitDoor/Levers" instance=ExtResource( 3 )]
 position = Vector2( 22, 43 )
 
-[node name="Lever" parent="YSort/Door/Levers" instance=ExtResource( 3 )]
-position = Vector2( -43, 11 )
+[node name="Lever" parent="YSort/ExitDoor/Levers" instance=ExtResource( 3 )]
+position = Vector2( -45, 8 )
