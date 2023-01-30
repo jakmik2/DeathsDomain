@@ -12,6 +12,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("fire") and can_fire:
 		var bullet_instance = bullet.instance()
+		bullet_instance.init("Player", "Enemy")
 		bullet_instance.position = $HandBulletBox.get_global_position()
 		bullet_instance.rotation_degrees = rotation_degrees
 		bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
