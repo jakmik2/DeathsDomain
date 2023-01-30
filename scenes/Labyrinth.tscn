@@ -73,19 +73,17 @@ tile_data = PoolIntArray( -458754, 1, 0, -458753, 1, 0, -524288, 1, 0, -524287, 
 
 [node name="YSort" type="YSort" parent="."]
 
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 54, 211 )
+
 [node name="Mob" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 95, 92 )
+position = Vector2( 290, 131 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 312, 59 )
-mass = 2.04082
+position = Vector2( 797, 254 )
 
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 157, 191 )
-mass = 3.06122
-
-[node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 178, 114 )
+position = Vector2( 652, 123 )
 
 [node name="TM-Walls" type="TileMap" parent="YSort"]
 mode = 1

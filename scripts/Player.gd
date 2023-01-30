@@ -5,7 +5,7 @@ enum {DEAD, WOUNDED, FINE, SICK}
 var max_speed = 100
 var current_speed = 100
 var max_health = 4
-var current_health = 2
+var current_health = 4
 var status = FINE
 
 # For Conditions
@@ -13,7 +13,7 @@ var limp_timer = 0
 var pulse_timer = 0
 
 onready var camera = get_node("PlayerCam")
-onready var camera_anim = get_node("PlayerCam/AnimationPlayer")
+onready var camera_anim = get_node("PlayerCam/ScreenAnimation")
 
 func _process(delta):
 	# Check Status of player
@@ -80,5 +80,6 @@ func eval_status(delta):
 		DEAD:
 			pass # Activate dead process
 
-func _ready():
-	pass
+func hurt(dmg):
+	print("ouch!")
+	current_health -= dmg
