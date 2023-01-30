@@ -1,55 +1,120 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://sprites/monster-sheet.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/monster-attack-sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Mob.gd" type="Script" id=2]
+[ext_resource path="res://scenes/animations/monster/monster-attack.anim" type="Animation" id=3]
+[ext_resource path="res://scenes/animations/monster/monster-idle.tres" type="Animation" id=4]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 96 )
+[sub_resource type="CircleShape2D" id=10]
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 96 )
+[sub_resource type="CircleShape2D" id=9]
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 96 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 96 )
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 2.0
-} ]
+[sub_resource type="CircleShape2D" id=11]
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 17.0294
 
-[node name="Mob" type="RigidBody2D"]
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/HurtBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="Mob" type="KinematicBody2D"]
 collision_layer = 3
 collision_mask = 3
-gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -30 )
-frames = SubResource( 5 )
-playing = true
+[node name="TerrainCollider" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -24, 4, -10, -7, 16, -7, 25, 6, 11, 16, -11, 15 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -25 )
-shape = SubResource( 6 )
+[node name="DetectionRadius" type="Area2D" parent="."]
+visible = false
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+scale = Vector2( 10, 6 )
+shape = SubResource( 10 )
+
+[node name="AttackRadius" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+position = Vector2( 0, -24.862 )
+scale = Vector2( 3, 2 )
+shape = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -29.059 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="HurtBox" type="Area2D" parent="Sprite"]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HurtBox"]
+position = Vector2( 11.451, 7.336 )
+scale = Vector2( 3.316, 3.131 )
+shape = SubResource( 11 )
+disabled = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0, -30 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -24, 4, -10, -7, 16, -7, 25, 6, 11, 16, -11, 15 )
+[node name="HitBox" type="RigidBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 0, -25 )
+shape = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = ExtResource( 3 )
+anims/Idle = ExtResource( 4 )
+anims/RESET = SubResource( 8 )
+
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_Detection_radius_body_entered"]
+[connection signal="body_exited" from="DetectionRadius" to="." method="_on_Detection_radius_body_exited"]
+[connection signal="body_entered" from="AttackRadius" to="." method="_on_AttackRadius_body_entered"]
+[connection signal="body_entered" from="Sprite/HurtBox" to="." method="_on_HurtBox_body_entered"]
