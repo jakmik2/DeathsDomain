@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/monster-sheet.png-747ec043ebea9cda49ec8e9208c5d48b.stex"
+path="res://.import/monster-death-sheet.png-1a8c26b576b9388d2cec386ee2aee3ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/monster-sheet.png"
-dest_files=[ "res://.import/monster-sheet.png-747ec043ebea9cda49ec8e9208c5d48b.stex" ]
+source_file="res://Sprites/monster/monster-death-sheet.png"
+dest_files=[ "res://.import/monster-death-sheet.png-1a8c26b576b9388d2cec386ee2aee3ac.stex" ]
 
 [params]
 

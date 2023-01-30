@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+export var atk_pwr = 1
+
 var explosion = preload("res://scenes/Explosion.tscn")
 
 func _on_Bullet_body_entered(body):
@@ -8,3 +10,7 @@ func _on_Bullet_body_entered(body):
 		explosion_instance.position = get_global_position()
 		get_tree().get_root().add_child(explosion_instance)
 		queue_free()
+		
+	if body.is_in_group("Enemy"):
+		# Access enemy script and apply damage
+		body.get_owner().hurt(atk_pwr)

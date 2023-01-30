@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/monster-attack-sheet.png-6e7abec587110c9bbf227ad303e35662.stex"
+path="res://.import/monster-death-sheet-sheet.png-b0a6ff2ef9498ee69bdcb6accde73156.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/monster-attack-sheet.png"
-dest_files=[ "res://.import/monster-attack-sheet.png-6e7abec587110c9bbf227ad303e35662.stex" ]
+source_file="res://Sprites/monster/monster-death-sheet-sheet.png"
+dest_files=[ "res://.import/monster-death-sheet-sheet.png-b0a6ff2ef9498ee69bdcb6accde73156.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
