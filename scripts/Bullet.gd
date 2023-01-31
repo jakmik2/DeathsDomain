@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Node2D
 
 export var atk_pwr = 1
 
@@ -11,14 +11,15 @@ func init(from, target):
 	originator = from
 	target_group = target
 
-func _on_Bullet_body_entered(body):
-	print(body.name)
-	if body.name != originator:
+
+func _on_BulletCollider_area_entered(area):
+	print(area.name)
+	if area.name != originator and area.name != "BulletCollider":
 		var explosion_instance = explosion.instance()
 		explosion_instance.position = get_global_position()
 		get_tree().get_root().add_child(explosion_instance)
 		queue_free()
 		
-	if body.is_in_group(target_group):
+	if area.is_in_group(target_group) and !area.get_owner().is_in_group(originator):
 		# Access enemy script and apply damage
-		body.get_owner().hurt(atk_pwr)
+		area.get_owner().hurt(atk_pwr)

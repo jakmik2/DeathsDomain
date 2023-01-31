@@ -59,7 +59,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=8]
 
-[node name="Player" type="KinematicBody2D" groups=["Injurable", "player"]]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
@@ -103,6 +103,8 @@ position = Vector2( 23, -6 )
 polygon = PoolVector2Array( -25, 4, -18, -3, -3, -6, 15, -3, 26, 4, 16, 11, -1, 14, -18, 12 )
 
 [node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( -4.932, -18.221 )

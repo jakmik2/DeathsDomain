@@ -177,7 +177,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[node name="Mob" type="KinematicBody2D" groups=["Injurable"]]
+[node name="Mob" type="KinematicBody2D"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 2 )
@@ -231,7 +231,7 @@ position = Vector2( 0, -30 )
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" groups=["HitBox"]]
 position = Vector2( 0, -25 )
 shape = SubResource( 6 )
 
