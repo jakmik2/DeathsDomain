@@ -84,8 +84,8 @@ hframes = 4
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 15, -16 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 4
+collision_mask = 11
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( -14, -33, -14, 15, 16, 31, 16, -16 )

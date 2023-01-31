@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 export var atk_pwr = 1
 
@@ -10,16 +10,25 @@ var target_group
 func init(from, target):
 	originator = from
 	target_group = target
+	
+func _ready():
+	$"TerrainCollider".global_position = Vector2(self.global_position.x, self.global_position.y + 15)
 
+func destroy():
+	var explosion_instance = explosion.instance()
+	explosion_instance.position = get_global_position()
+	get_tree().root.get_node("/root/Labyrinth/YSort").add_child(explosion_instance)
+	queue_free()
 
-func _on_BulletCollider_area_entered(area):
-	print(area.name)
-	if area.name != originator and area.name != "BulletCollider":
-		var explosion_instance = explosion.instance()
-		explosion_instance.position = get_global_position()
-		get_tree().get_root().add_child(explosion_instance)
-		queue_free()
+func _on_BulletCollider_body_entered(body):
+	# Handle HitBox
+	if !body.is_in_group(originator) and body.name != "TM-Walls":
+		destroy()
 		
-	if area.is_in_group(target_group) and !area.get_owner().is_in_group(originator):
+	if body.is_in_group(target_group) and !body.is_in_group(originator):
 		# Access enemy script and apply damage
-		area.get_owner().hurt(atk_pwr)
+		body.get_owner().hurt(atk_pwr)
+
+func _on_TerrainCollider_body_entered(body):
+	if body.name == "TM-Walls":
+		destroy()

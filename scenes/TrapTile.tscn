@@ -13,8 +13,7 @@ hframes = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 11 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -32, 9, 0, 24, 32, 9, 0, -8 )

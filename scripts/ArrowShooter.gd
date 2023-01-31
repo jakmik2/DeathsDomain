@@ -16,14 +16,14 @@ func shoot(instance_id):
 	if !can_fire:
 		return
 	
-	var position = Vector2.ZERO
+	var position = $".".get_global_position()
 	position.x -= 18
-	position.y -= 35
+	position.y -= 21
 	
 	var bullet_instance = bullet.instance()
-	bullet_instance.init(self.name, "HitBox")
+	bullet_instance.init("", "Injurable")
 	bullet_instance.position = position
 	bullet_instance.rotation = -PI/4
 	bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(PI-.48))
-	self.call_deferred("add_child", bullet_instance)
+	get_tree().root.get_node("/root/Labyrinth/YSort").call_deferred("add_child", bullet_instance)
 	can_fire = false

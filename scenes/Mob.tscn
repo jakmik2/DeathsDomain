@@ -178,8 +178,8 @@ tracks/2/keys = {
 }
 
 [node name="Mob" type="KinematicBody2D"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -191,8 +191,7 @@ polygon = PoolVector2Array( -24, 4, -10, -7, 16, -7, 25, 6, 11, 16, -11, 15 )
 
 [node name="DetectionRadius" type="Area2D" parent="."]
 visible = false
-collision_layer = 3
-collision_mask = 3
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
 scale = Vector2( 12.5, 9 )
@@ -200,8 +199,7 @@ shape = SubResource( 10 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
 visible = false
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
 position = Vector2( 0, -24.862 )
@@ -215,8 +213,6 @@ hframes = 2
 
 [node name="HurtBox" type="Area2D" parent="Sprite"]
 visible = false
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HurtBox"]
 position = Vector2( 11.451, 7.336 )
@@ -227,8 +223,8 @@ disabled = true
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0, -30 )
 
-[node name="HitBox" type="StaticBody2D" parent="." groups=["Enemy"]]
-collision_layer = 8
+[node name="HitBox" type="StaticBody2D" parent="." groups=["Enemy", "Injurable"]]
+collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" groups=["HitBox"]]
