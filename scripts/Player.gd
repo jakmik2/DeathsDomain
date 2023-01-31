@@ -2,11 +2,16 @@ extends KinematicBody2D
 
 enum {DEAD, WOUNDED, FINE, SICK}
 
+# Player Statistics
 var max_speed = 100
 var current_speed = 100
 var max_health = 4
 var current_health = 4
 var status = FINE
+
+# Player Inventory
+export var bandages = 0
+export var bullets = 10
 
 # For Conditions
 var limp_timer = 0
@@ -14,6 +19,14 @@ var pulse_timer = 0
 
 onready var camera = get_node("PlayerCam")
 onready var camera_anim = get_node("PlayerCam/ScreenAnimation")
+onready var health_node = get_node("PlayerCam/HUD/Health/Status")
+
+# Inventory Tracker
+onready var bandage_node = get_node("PlayerCam/HUD/Bandages/Count")
+onready var bullets_node = get_node("PlayerCam/HUD/Bullets/Count")
+
+func _ready():
+	Global.connect("pick_up", self, "pick_up")
 
 func _process(delta):
 	# Check Status of player
@@ -27,7 +40,8 @@ func _process(delta):
 		status = DEAD
 	
 	eval_status(delta)
-		
+	update_inventory()
+
 func _physics_process(delta):
 	var velocity = Vector2()
 	
@@ -55,6 +69,17 @@ func _physics_process(delta):
 
 		move_and_slide(velocity, Vector2(0, -1))
 
+func update_inventory():
+	bandage_node.text = str(bandages)
+	bullets_node.text = str(bullets)
+
+func pick_up(item):
+	match item:
+		{"bandage": var x}:
+			bandages += x
+		{"bullets": var x}:
+			bullets += x
+
 func pulse(magnitude):
 	camera.set_zoom(Vector2(magnitude, magnitude))
 
@@ -66,6 +91,8 @@ func shake_camera(amt=2):
 
 func eval_status(delta):
 	match status:
+		FINE:
+			health_node.text = "FINE"
 		WOUNDED:
 			# Set camera to wounded state
 			pulse_timer += delta
@@ -75,6 +102,7 @@ func eval_status(delta):
 			elif pulse_timer > 1:
 				pulse(1)
 				pulse_timer = 0
+			health_node.text = "WOUNDED"
 		SICK:
 			pass # Set camera to sick state sick state
 		DEAD:

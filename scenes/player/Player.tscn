@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/base-player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://scenes/player/Hand.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/player/PlayerCam.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=8]
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_mask = 14
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -27 )
+frames = SubResource( 3 )
+flip_h = true
+
+[node name="PlayerCam" parent="." instance=ExtResource( 4 )]
+
+[node name="Hand" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -25, 4, -18, -3, -3, -6, 15, -3, 26, 4, 16, 11, -1, 14, -18, 12 )
+
+[node name="HitBox" type="StaticBody2D" parent="." groups=["HitBox", "Injurable"]]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( -4.932, -24.99 )
+scale = Vector2( 0.84, 0.917 )
+shape = SubResource( 8 )
