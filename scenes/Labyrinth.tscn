@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/tiles/tiles.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/ArrowShooter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/items/Bandage.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/items/Bullets.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/Item.gd" type="Script" id=11]
 
 [sub_resource type="TileSet" id=2]
 0/name = "tiles.png 0"
@@ -68,7 +69,7 @@ points = PoolVector2Array( 0, 64, 32, 48, 64, 64, 32, 80, 0, 64 )
 0/z_index = 0
 
 [node name="Labyrinth" type="Node2D"]
-position = Vector2( 0, -1 )
+position = Vector2( -149, -5 )
 
 [node name="TM-Ground" type="TileMap" parent="."]
 mode = 1
@@ -81,7 +82,7 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 127, 94 )
+position = Vector2( 145, 98 )
 
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 596, 268 )
@@ -111,7 +112,7 @@ position = Vector2( 256, -36 )
 position = Vector2( 18, 32 )
 
 [node name="TrapTile" parent="YSort/ArrowShooter/Triggers" instance=ExtResource( 7 )]
-position = Vector2( -82, -33 )
+position = Vector2( -82, 2 )
 
 [node name="TileOpenedDoor" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 178, -42 )
@@ -121,7 +122,7 @@ code = "1"
 [node name="Levers" type="Node2D" parent="YSort/TileOpenedDoor"]
 
 [node name="TrapTile" parent="YSort/TileOpenedDoor/Levers" instance=ExtResource( 7 )]
-position = Vector2( -14, 5 )
+position = Vector2( -14, 40 )
 permanence = true
 
 [node name="ExitDoor" parent="YSort" instance=ExtResource( 6 )]
@@ -137,9 +138,16 @@ position = Vector2( 22, 43 )
 position = Vector2( -45, 8 )
 
 [node name="Items" type="YSort" parent="YSort"]
+position = Vector2( 0, -1 )
 
 [node name="Bandage" parent="YSort/Items" instance=ExtResource( 9 )]
-position = Vector2( 161, 69 )
+position = Vector2( 128, -116 )
+script = ExtResource( 11 )
 
 [node name="Bullets" parent="YSort/Items" instance=ExtResource( 10 )]
-position = Vector2( 191, 86 )
+position = Vector2( 161, -134 )
+script = ExtResource( 11 )
+
+[node name="Bandage2" parent="YSort/Items" instance=ExtResource( 9 )]
+position = Vector2( 101, -103 )
+script = ExtResource( 11 )
