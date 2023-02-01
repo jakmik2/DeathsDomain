@@ -8,6 +8,7 @@ var current_speed = 100
 var max_health = 4
 var current_health = 4
 var status = FINE
+var healing = false
 
 # Player Inventory
 export var bandages = 0
@@ -53,13 +54,17 @@ func _physics_process(delta):
 		limp_timer = 0
 		current_speed = max_speed
 	
+	if healing:
+		return
+	
 	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
+		healing = true
 		$"AnimationPlayer".play("heal")
 		yield ($"AnimationPlayer", "animation_finished")
+		healing = false
 		bandages -= 1
 		current_health += 1
 		$"AnimationPlayer".play("idle")
-		return
 	
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
