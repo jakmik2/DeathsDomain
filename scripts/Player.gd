@@ -31,7 +31,6 @@ func _ready():
 	Global.connect("pick_up", self, "pick_up")
 
 func _process(delta):
-	print(current_speed)
 	# Check Status of player
 	if current_health > int(round(max_health / 2)):
 		status = FINE
