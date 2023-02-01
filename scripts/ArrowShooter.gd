@@ -1,7 +1,6 @@
 extends Node2D
 var bullet = preload("res://scenes/Bullet.tscn")
 var triggers = []
-var bullet_speed = 1200
 var can_fire = false
 
 func _ready():
@@ -17,13 +16,13 @@ func shoot(instance_id):
 		return
 	
 	var position = $".".get_global_position()
-	position.x -= 25
-	position.y -= 21
+	position.x -= 20
+	position.y -= 20
 	
 	var bullet_instance = bullet.instance()
-	bullet_instance.init("", "Injurable")
-	bullet_instance.position = position
-	bullet_instance.rotation = -PI/4
-	bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(PI-.48))
+	bullet_instance.originator = ""
+	bullet_instance.target_group = "Injurable"
+	bullet_instance.supplied_pos = position
+	bullet_instance.supplied_rot = 27*PI/32
 	get_tree().root.get_node("/root/Labyrinth/YSort").call_deferred("add_child", bullet_instance)
 	can_fire = false

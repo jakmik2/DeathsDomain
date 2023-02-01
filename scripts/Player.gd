@@ -11,12 +11,13 @@ var status = FINE
 
 # Player Inventory
 export var bandages = 0
-export var bullets = 10
+export var bullets = 5
 
 # For Conditions
 var limp_timer = 0
 var pulse_timer = 0
 
+# Necessary Nodes
 onready var camera = get_node("PlayerCam")
 onready var camera_anim = get_node("PlayerCam/ScreenAnimation")
 onready var health_node = get_node("PlayerCam/HUD/Health/Status")
@@ -26,6 +27,7 @@ onready var bandage_node = get_node("PlayerCam/HUD/Bandages/Count")
 onready var bullets_node = get_node("PlayerCam/HUD/Bullets/Count")
 
 func _ready():
+	$"AnimationPlayer".play("idle")
 	Global.connect("pick_up", self, "pick_up")
 
 func _process(delta):
@@ -47,6 +49,14 @@ func _physics_process(delta):
 	
 	if status == WOUNDED:
 		limp_timer += delta
+		
+	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
+		$"AnimationPlayer".play("heal")
+		yield ($"AnimationPlayer", "animation_finished")
+		bandages -= 1
+		current_health += 1
+		$"AnimationPlayer".play("idle")
+		return
 	
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
@@ -109,5 +119,4 @@ func eval_status(delta):
 			pass # Activate dead process
 
 func hurt(dmg):
-	print("ouch!")
 	current_health -= dmg

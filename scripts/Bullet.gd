@@ -4,14 +4,17 @@ export var atk_pwr = 1
 
 var explosion = preload("res://scenes/Explosion.tscn")
 
+var bullet_speed = 1200
+
 var originator
 var target_group
+var supplied_pos
+var supplied_rot
 
-func init(from, target):
-	originator = from
-	target_group = target
-	
 func _ready():
+	global_position = supplied_pos
+	rotation = supplied_rot
+	self.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(supplied_rot))
 	# Offest bullet location
 	self.global_position = Vector2(2 * self.global_position.x - $"BulletSprite".global_position.x, 2 * self.global_position.y - $"BulletSprite".global_position.y)	
 	# Offset Terrain Collider
@@ -19,7 +22,7 @@ func _ready():
 
 func destroy():
 	var explosion_instance = explosion.instance()
-	explosion_instance.global_position = $"BulletSprite".global_position
+	explosion_instance.supplied_pos = $"BulletSprite".global_position
 	get_tree().root.get_node("/root/Labyrinth/YSort").add_child(explosion_instance)
 	queue_free()
 
