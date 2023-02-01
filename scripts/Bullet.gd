@@ -15,10 +15,13 @@ func _ready():
 	global_position = supplied_pos
 	rotation = supplied_rot
 	self.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(supplied_rot))
+	#print(global_position)
+	
 	# Offest bullet location
 	self.global_position = Vector2(2 * self.global_position.x - $"BulletSprite".global_position.x, 2 * self.global_position.y - $"BulletSprite".global_position.y)	
 	# Offset Terrain Collider
 	$"TerrainCollider".global_position = Vector2($"BulletSprite".global_position.x, $"BulletSprite".global_position.y + 15)
+	#print(global_position)
 
 func destroy():
 	var explosion_instance = explosion.instance()
