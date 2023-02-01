@@ -31,8 +31,9 @@ func _ready():
 	Global.connect("pick_up", self, "pick_up")
 
 func _process(delta):
+	print(current_speed)
 	# Check Status of player
-	if current_health == max_health:
+	if current_health > int(round(max_health / 2)):
 		status = FINE
 		max_speed = 100
 	elif current_health <= int(round(max_health / 2)):
@@ -49,7 +50,10 @@ func _physics_process(delta):
 	
 	if status == WOUNDED:
 		limp_timer += delta
-		
+	else:
+		limp_timer = 0
+		current_speed = max_speed
+	
 	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
 		$"AnimationPlayer".play("heal")
 		yield ($"AnimationPlayer", "animation_finished")
