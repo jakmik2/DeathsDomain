@@ -12,7 +12,7 @@ var healing = false
 
 # Player Inventory
 export var bandages = 0
-export var bullets = 5
+export var bullets = 500
 
 # For Conditions
 var limp_timer = 0

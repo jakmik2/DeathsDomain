@@ -23,5 +23,8 @@ script = ExtResource( 2 )
 frames = SubResource( 4 )
 flip_h = true
 
-[node name="HandBulletBox" type="Node2D" parent="."]
+[node name="HandBulletBox-L" type="Node2D" parent="."]
+position = Vector2( -23, -6 )
+
+[node name="HandBulletBox-R" type="Node2D" parent="."]
 position = Vector2( 23, -6 )
