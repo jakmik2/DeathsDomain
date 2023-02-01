@@ -1,7 +1,7 @@
 extends Node2D
 var bullet = preload("res://scenes/Bullet.tscn")
 var triggers = []
-var bullet_speed = 400
+var bullet_speed = 1200
 var can_fire = false
 
 func _ready():
@@ -17,7 +17,7 @@ func shoot(instance_id):
 		return
 	
 	var position = $".".get_global_position()
-	position.x -= 18
+	position.x -= 25
 	position.y -= 21
 	
 	var bullet_instance = bullet.instance()

@@ -12,11 +12,14 @@ func init(from, target):
 	target_group = target
 	
 func _ready():
-	$"TerrainCollider".global_position = Vector2(self.global_position.x, self.global_position.y + 15)
+	# Offest bullet location
+	self.global_position = Vector2(2 * self.global_position.x - $"BulletSprite".global_position.x, 2 * self.global_position.y - $"BulletSprite".global_position.y)	
+	# Offset Terrain Collider
+	$"TerrainCollider".global_position = Vector2($"BulletSprite".global_position.x, $"BulletSprite".global_position.y + 15)
 
 func destroy():
 	var explosion_instance = explosion.instance()
-	explosion_instance.position = get_global_position()
+	explosion_instance.global_position = $"BulletSprite".global_position
 	get_tree().root.get_node("/root/Labyrinth/YSort").add_child(explosion_instance)
 	queue_free()
 

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/BloodOverlay.png" type="Texture" id=1]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Pain"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.929412 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="PlayerCam" type="Camera2D"]
+current = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -487.0
+margin_top = -277.0
+margin_right = 486.0
+margin_bottom = 283.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="ScreenAnimation" type="AnimationPlayer" parent="."]
+anims/Pain = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
+position = Vector2( -428, -218 )
