@@ -90,7 +90,7 @@ __meta__ = {
 position = Vector2( 596, 268 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 434, 188 )
+position = Vector2( 609, 93 )
 
 [node name="Mob" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 238, 365 )

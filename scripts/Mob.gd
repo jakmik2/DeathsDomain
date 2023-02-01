@@ -38,9 +38,11 @@ func _physics_process(delta):
 	
 func hurt(dmg):
 	if health > 0:
+		Global.toggle_shake(5, 0)
 		health -= dmg
 		anim.play("Hurt")
 		yield(anim, "animation_finished")
+		Global.toggle_shake(2, 1)
 		anim.play("Idle")
 
 func death():

@@ -6,12 +6,18 @@ var bullet = preload("res://scenes/Bullet.tscn")
 var can_fire = true
 
 var rot_coef = 0
-var pos = 0
+var pos
+
+onready var anim = get_node("AnimationPlayer")
+
+func _ready():
+	anim.play("idle")
+	pos = $"HandBulletBox-L".global_position
 
 func _process(delta):
 	look_at(get_global_mouse_position())
 	
-	if fmod(abs(rotation_degrees), 360) > 90 and fmod(abs(rotation_degrees), 360) < 270:
+	if fmod(abs(rotation_degrees), 360) > 85 and fmod(abs(rotation_degrees), 360) <= 275:
 		rotation += PI
 		rot_coef = PI
 		pos = $"HandBulletBox-L".global_position
@@ -21,7 +27,13 @@ func _process(delta):
 		rot_coef = 0
 		pos = $"HandBulletBox-R".global_position
 	
+	# Remove Camera shaking at transition
+	if fmod(abs(rotation_degrees), 360) < 265 or fmod(abs(rotation_degrees), 360) > 285:
+		Global.set_camera_offset(pos)
+	
+	
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
+		anim.play("recoil")
 		var bullet_instance = bullet.instance()
 		bullet_instance.originator = "player"
 		bullet_instance.target_group = "Enemy"
@@ -30,5 +42,10 @@ func _process(delta):
 		get_tree().root.get_node("/root/Labyrinth/YSort").call_deferred("add_child", bullet_instance)
 		can_fire = false
 		yield(get_tree().create_timer(fire_rate), "timeout")
+		#yield(anim, "animation_finished")
 		self.get_owner().bullets -= 1
+		yield(anim, "animation_finished")
 		can_fire = true
+		anim.play("idle")
+	
+	
