@@ -9,6 +9,7 @@ var max_health = 4
 var current_health = 4
 var status = FINE
 var healing = false
+var swinging = false
 
 # Player Inventory
 export var bandages = 3
@@ -49,6 +50,9 @@ func _physics_process(delta):
 	
 	if healing:
 		return
+		
+	if swinging:
+		return
 	
 	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
 		healing = true
@@ -58,6 +62,18 @@ func _physics_process(delta):
 		bandages -= 1
 		current_health += 1
 		$"AnimationPlayer".play("idle")
+		
+	if Input.is_action_just_pressed("melee_attack"):
+		swinging = true
+		if get_local_mouse_position().x < 0:
+			$"PlayerSprite".scale.x = 1
+		else:
+			$"PlayerSprite".scale.x = -1
+		$"AnimationPlayer".play("attack")
+		yield($"AnimationPlayer", "animation_finished")
+		swinging = false
+		$"AnimationPlayer".play("idle")
+		$"PlayerSprite".scale.x = 1
 	
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1

@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/animations/monster/monster-idle.tres" type="Animation" id=4]
 [ext_resource path="res://Sprites/monster/monster-death-sheet.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/monster/monster-dead.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/monster/monster-attack-sheet.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/monster/monster-sheet.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=10]
 
@@ -194,7 +194,6 @@ scale = Vector2( 12.5, 9 )
 shape = SubResource( 10 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
