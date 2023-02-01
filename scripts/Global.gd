@@ -8,6 +8,7 @@ signal toggle_shake(value, axis)
 signal update_hud(item, val)
 
 signal set_camera_offset(pos)
+signal play_camera_anim(anim)
 
 func lever_changed(string):
 	emit_signal("lever_changed", string)
@@ -23,3 +24,6 @@ func update_hud(item, val):
 
 func set_camera_offset(pos):
 	emit_signal("set_camera_offset", pos)
+
+func play_camera_anim(anim):
+	emit_signal("play_camera_anim", anim)

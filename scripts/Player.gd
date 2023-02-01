@@ -7,13 +7,19 @@ var max_speed = 100
 var current_speed = 100
 var max_health = 4
 var current_health = 4
+
+var atk_pwr = 1
+
 var status = FINE
+
+var shaking = false
+
 var healing = false
 var swinging = false
 
 # Player Inventory
 export var bandages = 3
-export var bullets = 5
+export var bullets = 50
 
 # For Conditions
 var limp_timer = 0
@@ -45,6 +51,8 @@ func _physics_process(delta):
 	if status == WOUNDED:
 		limp_timer += delta
 	else:
+		if shaking:
+			apply_camera_shake()
 		limp_timer = 0
 		current_speed = max_speed
 	
@@ -56,6 +64,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
 		healing = true
+		if shaking:
+			apply_camera_shake()
 		$"AnimationPlayer".play("heal")
 		yield ($"AnimationPlayer", "animation_finished")
 		healing = false
@@ -87,10 +97,12 @@ func _physics_process(delta):
 	if velocity.length() > 0:
 		if limp_timer > 0.4 and limp_timer < 0.8:
 			current_speed = max_speed / 20
-			Global.toggle_shake(0.5, 0)
+			if !shaking:
+				apply_camera_shake()			
 		elif limp_timer > 0.8:
 			current_speed = max_speed
-			Global.toggle_shake()
+			if shaking:
+				apply_camera_shake()			
 			limp_timer = 0
 
 		velocity = velocity.normalized() * current_speed
@@ -129,8 +141,17 @@ func eval_status(delta):
 
 func hurt(dmg):
 	current_health -= dmg
-	Global.toggle_shake()
+	#Global.toggle_shake()
 	$"AnimationPlayer".play("hurt")
 	yield($"AnimationPlayer", "animation_finished")
-	Global.toggle_shake()
+	#Global.toggle_shake()
 	$"AnimationPlayer".play("idle")
+
+func apply_camera_shake(amt=1,axis=0):
+	Global.toggle_shake(amt, axis)
+	shaking = !shaking
+
+func _on_HurtBox_body_entered(body):
+	print(body.name)
+	if body.is_in_group("Enemy"):
+		body.hurt(atk_pwr)

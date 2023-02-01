@@ -10,10 +10,14 @@ var speed = 50
 var motion = Vector2.ZERO
 var player = null
 var attacking = false
+var atk_rate = 0.1
 
 var alive = true
 
 var atk_pwr = 1
+
+# AI
+var strategy = "follow"
 
 func _ready():
 	anim.play("Idle")
@@ -27,10 +31,13 @@ func _physics_process(delta):
 	
 	if !alive:
 		return
-		
-	if player and !attacking:
+	
+	if player and !attacking and strategy == "follow":
 		motion = position.direction_to(player.position) * speed
-		
+	
+	elif player and !attacking and strategy == "reset":
+		motion = position.direction_to(player.position) * speed * -1
+	
 	if abs(motion.x) > 0:
 		sprite_body.scale.x = sign(motion.x) * 1
 	
@@ -38,11 +45,11 @@ func _physics_process(delta):
 	
 func hurt(dmg):
 	if health > 0:
-		Global.toggle_shake(5, 0)
+		#Global.toggle_shake(5, 0)
 		health -= dmg
 		anim.play("Hurt")
 		yield(anim, "animation_finished")
-		Global.toggle_shake(2, 1)
+		#Global.toggle_shake(2, 1)
 		anim.play("Idle")
 
 func death():
@@ -74,3 +81,9 @@ func _on_HurtBox_body_entered(body):
 	get_node("Sprite/HurtBox/CollisionShape2D").set_deferred("disabled", true)
 	if body.name == "Player":
 		body.hurt(atk_pwr)
+	strategy = "reset"
+
+func _on_AttackRadius_body_exited(body):
+	if body.name == "Player":
+		yield(get_tree().create_timer(atk_rate), "timeout")	
+		strategy = "follow"

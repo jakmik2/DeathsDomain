@@ -135,7 +135,7 @@ tracks/3/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
-collision_mask = 14
+collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="PlayerCam" parent="." instance=ExtResource( 4 )]
@@ -154,8 +154,8 @@ flip_h = true
 
 [node name="HurtBox" type="Area2D" parent="PlayerSprite"]
 position = Vector2( 0, 32 )
-collision_layer = 0
-collision_mask = 4
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/HurtBox"]
 position = Vector2( -22.5, -28 )
@@ -170,7 +170,7 @@ shape = SubResource( 9 )
 [node name="HitBox" type="StaticBody2D" parent="." groups=["HitBox", "Injurable"]]
 position = Vector2( 0, -5 )
 collision_layer = 0
-collision_mask = 8
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( -4.932, -24.99 )

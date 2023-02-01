@@ -34,6 +34,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
 		anim.play("recoil")
+		Global.play_camera_anim("recoil")
 		var bullet_instance = bullet.instance()
 		bullet_instance.originator = "player"
 		bullet_instance.target_group = "Enemy"

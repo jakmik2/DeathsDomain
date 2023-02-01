@@ -7,6 +7,8 @@ var axis
 func _ready():
 	Global.connect("toggle_shake", self, "toggle_shake")
 	Global.connect("set_camera_offset", self, "set_camera_offset")
+	Global.connect("play_camera_anim", self, "play_anim")
+	$"ScreenAnimation".play("idle")
 
 func _process(delta):
 	if shaking:
@@ -43,3 +45,6 @@ func shake_camera():
 
 func set_camera_offset(pos):
 	self.global_position = pos
+
+func play_anim(anim):
+	$"ScreenAnimation".play(anim)
