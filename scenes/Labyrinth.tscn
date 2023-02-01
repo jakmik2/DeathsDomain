@@ -81,7 +81,7 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 132, 108 )
+position = Vector2( 116, 130 )
 __meta__ = {
 "_edit_group_": true
 }
