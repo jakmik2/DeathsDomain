@@ -7,31 +7,31 @@ var max_speed = 100
 var current_speed = 100
 var max_health = 4
 var current_health = 4
+
+var atk_pwr = 1
+
 var status = FINE
+
+var shaking = false
+
 var healing = false
+var swinging = false
 
 # Player Inventory
-export var bandages = 0
-export var bullets = 500
+export var bandages = 3
+export var bullets = 50
 
 # For Conditions
 var limp_timer = 0
 var pulse_timer = 0
 
-# Necessary Nodes
 onready var camera = get_node("PlayerCam")
-onready var camera_anim = get_node("PlayerCam/ScreenAnimation")
-onready var health_node = get_node("PlayerCam/HUD/Health/Status")
-
-# Inventory Tracker
-onready var bandage_node = get_node("PlayerCam/HUD/Bandages/Count")
-onready var bullets_node = get_node("PlayerCam/HUD/Bullets/Count")
 
 func _ready():
 	$"AnimationPlayer".play("idle")
 	Global.connect("pick_up", self, "pick_up")
 
-func _process(delta):
+func _process(delta):	
 	# Check Status of player
 	if current_health > int(round(max_health / 2)):
 		status = FINE
@@ -51,20 +51,39 @@ func _physics_process(delta):
 	if status == WOUNDED:
 		limp_timer += delta
 	else:
+		if shaking:
+			apply_camera_shake()
 		limp_timer = 0
 		current_speed = max_speed
 	
 	if healing:
 		return
+		
+	if swinging:
+		return
 	
 	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
 		healing = true
+		if shaking:
+			apply_camera_shake()
 		$"AnimationPlayer".play("heal")
 		yield ($"AnimationPlayer", "animation_finished")
 		healing = false
 		bandages -= 1
 		current_health += 1
 		$"AnimationPlayer".play("idle")
+		
+	if Input.is_action_just_pressed("melee_attack"):
+		swinging = true
+		if get_local_mouse_position().x < 0:
+			$"PlayerSprite".scale.x = 1
+		else:
+			$"PlayerSprite".scale.x = -1
+		$"AnimationPlayer".play("attack")
+		yield($"AnimationPlayer", "animation_finished")
+		swinging = false
+		$"AnimationPlayer".play("idle")
+		$"PlayerSprite".scale.x = 1
 	
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
@@ -78,9 +97,12 @@ func _physics_process(delta):
 	if velocity.length() > 0:
 		if limp_timer > 0.4 and limp_timer < 0.8:
 			current_speed = max_speed / 20
-			shake_camera(0.5)
+			if !shaking:
+				apply_camera_shake()			
 		elif limp_timer > 0.8:
 			current_speed = max_speed
+			if shaking:
+				apply_camera_shake()			
 			limp_timer = 0
 
 		velocity = velocity.normalized() * current_speed
@@ -88,8 +110,8 @@ func _physics_process(delta):
 		move_and_slide(velocity, Vector2(0, -1))
 
 func update_inventory():
-	bandage_node.text = str(bandages)
-	bullets_node.text = str(bullets)
+	Global.update_hud("bandages", str(bandages))
+	Global.update_hud("bullets", str(bullets))
 
 func pick_up(item):
 	match item:
@@ -98,29 +120,20 @@ func pick_up(item):
 		{"bullets": var x}:
 			bullets += x
 
-func pulse(magnitude):
-	camera.set_zoom(Vector2(magnitude, magnitude))
-
-func shake_camera(amt=2):
-	camera.set_offset(Vector2( \
-		rand_range(-1.0, 1.0) * amt, \
-		rand_range(-1.0, 1.0) * amt \
-	))
-
 func eval_status(delta):
 	match status:
 		FINE:
-			health_node.text = "FINE"
+			Global.update_hud("health", "FINE")
 		WOUNDED:
 			# Set camera to wounded state
-			pulse_timer += delta
-			if pulse_timer > 0.6 and pulse_timer < 1:
-				pulse(1 - (0.8 - pulse_timer) / 20)
-				camera_anim.play("Pain")
-			elif pulse_timer > 1:
-				pulse(1)
-				pulse_timer = 0
-			health_node.text = "WOUNDED"
+			#pulse_timer += delta
+			#if pulse_timer > 0.6 and pulse_timer < 1:
+				#$"PlayerCam".pulse(1 - (0.8 - pulse_timer) / 20)
+				#camera_anim.play("Pain")
+			#elif pulse_timer > 1:
+				#$"PlayerCam".pulse(1)
+				#pulse_timer = 0
+			Global.update_hud("health", "WOUNDED")
 		SICK:
 			pass # Set camera to sick state sick state
 		DEAD:
@@ -128,3 +141,17 @@ func eval_status(delta):
 
 func hurt(dmg):
 	current_health -= dmg
+	#Global.toggle_shake()
+	$"AnimationPlayer".play("hurt")
+	yield($"AnimationPlayer", "animation_finished")
+	#Global.toggle_shake()
+	$"AnimationPlayer".play("idle")
+
+func apply_camera_shake(amt=1,axis=0):
+	Global.toggle_shake(amt, axis)
+	shaking = !shaking
+
+func _on_HurtBox_body_entered(body):
+	print(body.name)
+	if body.is_in_group("Enemy"):
+		body.hurt(atk_pwr)

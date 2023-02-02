@@ -80,17 +80,11 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 145, 98 )
-__meta__ = {
-"_edit_group_": true
-}
-
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 596, 268 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 434, 188 )
+position = Vector2( 609, 93 )
 
 [node name="Mob" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 238, 365 )
@@ -150,3 +144,6 @@ position = Vector2( 161, -134 )
 
 [node name="Bandage2" parent="YSort/Items" instance=ExtResource( 9 )]
 position = Vector2( 101, -103 )
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 145, 107 )
