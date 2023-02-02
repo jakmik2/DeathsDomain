@@ -28,8 +28,8 @@ func _process(delta):
 		pos = $"HandBulletBox-R".global_position
 	
 	# Remove Camera shaking at transition
-	if fmod(abs(rotation_degrees), 360) < 265 or fmod(abs(rotation_degrees), 360) > 285:
-		Global.set_camera_offset(pos)
+	#if fmod(abs(rotation_degrees), 360) < 265 or fmod(abs(rotation_degrees), 360) > 285:
+	#	Global.set_camera_offset(pos)
 	
 	
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:

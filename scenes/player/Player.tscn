@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Sprites/base-player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sprites/player-melee-attack.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/player-damage.png" type="Texture" id=10]
+[ext_resource path="res://scripts/CameraArm.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 6.5, 19 )
@@ -138,12 +139,6 @@ tracks/3/keys = {
 collision_mask = 4
 script = ExtResource( 2 )
 
-[node name="PlayerCam" parent="." instance=ExtResource( 4 )]
-position = Vector2( 16, -20 )
-
-[node name="HUD" parent="PlayerCam" instance=ExtResource( 8 )]
-position = Vector2( -427, -215 )
-
 [node name="Hand" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -29 )
 
@@ -184,5 +179,16 @@ anims/attack = SubResource( 11 )
 anims/heal = ExtResource( 6 )
 anims/hurt = SubResource( 10 )
 anims/idle = ExtResource( 5 )
+
+[node name="PlayerCam" parent="." instance=ExtResource( 4 )]
+
+[node name="HUD" parent="PlayerCam" instance=ExtResource( 8 )]
+position = Vector2( -427, -215 )
+
+[node name="CameraArm" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Pointer" type="Node2D" parent="CameraArm"]
+position = Vector2( 65, 0 )
 
 [connection signal="body_entered" from="PlayerSprite/HurtBox" to="." method="_on_HurtBox_body_entered"]

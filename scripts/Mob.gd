@@ -6,13 +6,15 @@ onready var detection_radius = get_node("DetectionRadius")
 
 export var health = 2
 
-var speed = 50
+var speed = 75
 var motion = Vector2.ZERO
 var player = null
 var attacking = false
+var resetting = false
 var atk_rate = 0.1
 
 var alive = true
+
 
 var atk_pwr = 1
 
@@ -32,11 +34,19 @@ func _physics_process(delta):
 	if !alive:
 		return
 	
-	if player and !attacking and strategy == "follow":
-		motion = position.direction_to(player.position) * speed
+	if attacking:
+		return
 	
-	elif player and !attacking and strategy == "reset":
+	if player and strategy == "follow":
+		motion = position.direction_to(player.position) * speed
+	elif player and strategy == "reset":
 		motion = position.direction_to(player.position) * speed * -1
+	
+	if strategy == "reset" and !resetting:
+		resetting = true
+		yield(get_tree().create_timer(atk_rate * 2), "timeout")
+		strategy = "follow"
+		resetting = false
 	
 	if abs(motion.x) > 0:
 		sprite_body.scale.x = sign(motion.x) * 1
