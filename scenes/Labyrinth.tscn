@@ -67,7 +67,7 @@ points = PoolVector2Array( 0, 64, 32, 48, 64, 64, 32, 80, 0, 64 )
 } ]
 0/z_index = 0
 
-[node name="Labyrinth" type="Node2D"]
+[node name="Labyrinth" type="Node2D" groups=["player"]]
 position = Vector2( -149, -5 )
 
 [node name="TM-Ground" type="TileMap" parent="."]
@@ -81,7 +81,7 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 596, 268 )
+position = Vector2( 315, -3 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 609, 93 )
@@ -146,4 +146,4 @@ position = Vector2( 161, -134 )
 position = Vector2( 101, -103 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 145, 107 )
+position = Vector2( 5, 91 )
