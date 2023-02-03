@@ -32,7 +32,7 @@ func _process(delta):
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
 		anim.play("recoil")
 		Global.play_camera_anim("recoil")
-		
+		Global.click()
 		for enemy in enemies_in_range:
 			enemy.alert(get_owner().position)
 		

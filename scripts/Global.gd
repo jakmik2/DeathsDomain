@@ -10,6 +10,8 @@ signal update_hud(item, val)
 signal set_camera_offset(pos)
 signal play_camera_anim(anim)
 
+signal click()
+
 func lever_changed(string):
 	emit_signal("lever_changed", string)
 
@@ -27,3 +29,6 @@ func set_camera_offset(pos):
 
 func play_camera_anim(anim):
 	emit_signal("play_camera_anim", anim)
+
+func click():
+	emit_signal("click")
