@@ -34,8 +34,9 @@ func _on_BulletCollider_body_entered(body):
 	if !body.is_in_group(originator) and body.name != "TM-Walls":
 		destroy()
 		
-	if body.is_in_group(target_group) and !body.is_in_group(originator):
+	if body.is_in_group(target_group) and !body.is_in_group(originator) and !body.is_in_group("cannot_damage"):
 		# Access enemy script and apply damage
+		print(body.get_owner().name)
 		body.get_owner().hurt(atk_pwr)
 
 func _on_TerrainCollider_body_entered(body):

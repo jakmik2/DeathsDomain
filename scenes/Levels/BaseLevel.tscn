@@ -62,7 +62,7 @@ points = PoolVector2Array( 0, 64, 32, 48, 64, 64, 32, 80, 0, 64 )
 } ]
 0/z_index = 0
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" groups=["cannot_damage"]]
 
 [node name="TM-Ground" type="TileMap" parent="."]
 mode = 1

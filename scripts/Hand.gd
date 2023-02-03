@@ -5,6 +5,8 @@ export var fire_rate = 0.2
 var bullet = preload("res://scenes/Bullet.tscn")
 var can_fire = true
 
+var enemies_in_range = []
+
 var rot_coef = 0
 var pos
 
@@ -27,14 +29,13 @@ func _process(delta):
 		rot_coef = 0
 		pos = $"HandBulletBox-R".global_position
 	
-	# Remove Camera shaking at transition
-	#if fmod(abs(rotation_degrees), 360) < 265 or fmod(abs(rotation_degrees), 360) > 285:
-	#	Global.set_camera_offset(pos)
-	
-	
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
 		anim.play("recoil")
 		Global.play_camera_anim("recoil")
+		
+		for enemy in enemies_in_range:
+			enemy.alert(get_owner().position)
+		
 		var bullet_instance = bullet.instance()
 		bullet_instance.originator = "player"
 		bullet_instance.target_group = "Enemy"
@@ -48,5 +49,11 @@ func _process(delta):
 		yield(anim, "animation_finished")
 		can_fire = true
 		anim.play("idle")
-	
-	
+
+func _on_GunshotAlertRange_body_entered(body):
+	if body.is_in_group("Enemy"):
+		enemies_in_range.append(body.get_owner())
+
+func _on_GunshotAlertRange_body_exited(body):
+	if body.is_in_group("Enemy"):
+		enemies_in_range.erase(body.get_owner())

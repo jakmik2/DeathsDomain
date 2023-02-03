@@ -9,6 +9,7 @@ export var health = 2
 var speed = 75
 var motion = Vector2.ZERO
 var player = null
+var alert_loc = Vector2.ZERO
 var attacking = false
 var resetting = false
 var atk_rate = 0.1
@@ -41,12 +42,21 @@ func _physics_process(delta):
 		motion = position.direction_to(player.position) * speed
 	elif player and strategy == "reset":
 		motion = position.direction_to(player.position) * speed * -1
+	elif strategy == "alerted":
+		print(within_range())
+		print(position)
+		print(alert_loc)
+		motion = position.direction_to(alert_loc) * speed
 	
 	if strategy == "reset" and !resetting:
 		resetting = true
 		yield(get_tree().create_timer(atk_rate * 2), "timeout")
 		strategy = "follow"
 		resetting = false
+		
+	if strategy == "alerted" and within_range():
+		print(within_range())
+		strategy = "follow"
 	
 	if abs(motion.x) > 0:
 		sprite_body.scale.x = sign(motion.x) * 1
@@ -70,6 +80,13 @@ func death():
 	$"TerrainCollider".disabled = true
 	yield(anim, "animation_finished")
 	anim.play("Dead")
+
+func alert(p):
+	strategy = "alerted"
+	alert_loc = p
+	
+func within_range():
+	return position.x  < alert_loc.x + 10 and position.x > alert_loc.x - 10 and position.y < alert_loc.y + 10 and position.y > alert_loc.y - 10
 
 func _on_Detection_radius_body_entered(body):
 	if body.name == "Player":

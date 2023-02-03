@@ -46,7 +46,7 @@ func _process(delta):
 	update_inventory()
 
 func _physics_process(delta):
-	var velocity = Vector2()
+	var velocity = Vector2.ZERO
 	
 	if status == WOUNDED:
 		limp_timer += delta
@@ -152,6 +152,5 @@ func apply_camera_shake(amt=1,axis=0):
 	shaking = !shaking
 
 func _on_HurtBox_body_entered(body):
-	print(body.name)
 	if body.is_in_group("Enemy"):
 		body.hurt(atk_pwr)
