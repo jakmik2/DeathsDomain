@@ -38,14 +38,12 @@ func _physics_process(delta):
 	if attacking:
 		return
 	
-	if player and strategy == "follow":
-		motion = position.direction_to(player.position) * speed
-	elif player and strategy == "reset":
+	if player and strategy == "reset":
 		motion = position.direction_to(player.position) * speed * -1
+	elif player:
+		motion = position.direction_to(player.position) * speed
+		strategy = "follow"
 	elif strategy == "alerted":
-		print(within_range())
-		print(position)
-		print(alert_loc)
 		motion = position.direction_to(alert_loc) * speed
 	
 	if strategy == "reset" and !resetting:
