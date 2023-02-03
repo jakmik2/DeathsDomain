@@ -89,6 +89,7 @@ melee_attack={
 2d_physics/layer_3="environment"
 2d_physics/layer_4="projectiles"
 2d_physics/layer_5="items"
+2d_physics/layer_6="terrain-collider"
 
 [mono]
 

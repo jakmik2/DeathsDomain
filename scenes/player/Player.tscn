@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Sprites/base-player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Sprites/player-melee-attack.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/player-damage.png" type="Texture" id=10]
 [ext_resource path="res://scripts/CameraArm.gd" type="Script" id=11]
+[ext_resource path="res://sounds/damage.mp3" type="AudioStream" id=12]
+[ext_resource path="res://sounds/indoor-footsteps.mp3" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 6.5, 19 )
@@ -136,7 +138,8 @@ tracks/3/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
-collision_mask = 4
+collision_layer = 33
+collision_mask = 36
 script = ExtResource( 2 )
 
 [node name="Hand" parent="." instance=ExtResource( 3 )]
@@ -190,5 +193,14 @@ script = ExtResource( 11 )
 
 [node name="Pointer" type="Node2D" parent="CameraArm"]
 position = Vector2( 65, 0 )
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 12 )
+
+[node name="Walking" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 13 )
+volume_db = 10.0
 
 [connection signal="body_entered" from="PlayerSprite/HurtBox" to="." method="_on_HurtBox_body_entered"]

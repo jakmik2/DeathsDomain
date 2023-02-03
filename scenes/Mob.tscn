@@ -179,8 +179,8 @@ tracks/2/keys = {
 }
 
 [node name="Mob" type="KinematicBody2D" groups=["Enemy"]]
-collision_layer = 0
-collision_mask = 5
+collision_layer = 32
+collision_mask = 36
 script = ExtResource( 2 )
 
 [node name="TerrainCollider" type="CollisionPolygon2D" parent="."]

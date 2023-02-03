@@ -29,6 +29,9 @@ func destroy():
 
 func _on_BulletCollider_body_entered(body):
 	# Handle HitBox
+	if body.name == "Player":
+		return
+	
 	if !body.is_in_group(originator) and body.name != "TM-Walls":
 		destroy()
 		

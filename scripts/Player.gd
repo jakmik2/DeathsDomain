@@ -25,7 +25,13 @@ export var bullets = 50
 var limp_timer = 0
 var pulse_timer = 0
 
-onready var camera = get_node("PlayerCam")
+# Sounds
+onready var damage_stream = get_node("Sounds/Damage")
+onready var walking_stream = get_node("Sounds/Walking")
+
+## Walking / Limping
+var walking = load("res://sounds/indoor-footsteps.mp3")
+#var limping = load("res://sounds/")
 
 func _ready():
 	$"AnimationPlayer".play("idle")
@@ -56,10 +62,9 @@ func _physics_process(delta):
 		limp_timer = 0
 		current_speed = max_speed
 	
-	if healing:
-		return
-		
-	if swinging:
+	if healing or swinging:
+		if walking_stream.playing:
+			walking_stream.stop()
 		return
 	
 	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
@@ -95,6 +100,8 @@ func _physics_process(delta):
 		velocity.x += 1
 		
 	if velocity.length() > 0:
+		if !walking_stream.playing:
+			walking_stream.play()
 		if limp_timer > 0.4 and limp_timer < 0.8:
 			current_speed = max_speed / 20
 			if !shaking:
@@ -108,6 +115,9 @@ func _physics_process(delta):
 		velocity = velocity.normalized() * current_speed
 
 		move_and_slide(velocity, Vector2(0, -1))
+	
+	elif walking_stream.playing:
+		walking_stream.stop()
 
 func update_inventory():
 	Global.update_hud("bandages", str(bandages))
@@ -123,16 +133,10 @@ func pick_up(item):
 func eval_status(delta):
 	match status:
 		FINE:
+			Global.play_camera_anim("idle")
 			Global.update_hud("health", "FINE")
 		WOUNDED:
-			# Set camera to wounded state
-			#pulse_timer += delta
-			#if pulse_timer > 0.6 and pulse_timer < 1:
-				#$"PlayerCam".pulse(1 - (0.8 - pulse_timer) / 20)
-				#camera_anim.play("Pain")
-			#elif pulse_timer > 1:
-				#$"PlayerCam".pulse(1)
-				#pulse_timer = 0
+			Global.play_camera_anim("Pain")
 			Global.update_hud("health", "WOUNDED")
 		SICK:
 			pass # Set camera to sick state sick state
@@ -141,11 +145,12 @@ func eval_status(delta):
 
 func hurt(dmg):
 	current_health -= dmg
-	#Global.toggle_shake()
 	$"AnimationPlayer".play("hurt")
+	damage_stream.play()
 	yield($"AnimationPlayer", "animation_finished")
-	#Global.toggle_shake()
 	$"AnimationPlayer".play("idle")
+	yield(get_tree().create_timer(damage_stream.stream.get_length()), "timeout")
+	damage_stream.stop()
 
 func apply_camera_shake(amt=1,axis=0):
 	Global.toggle_shake(amt, axis)

@@ -8,18 +8,19 @@
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -24 )
+position = Vector2( 0, 11 )
 texture = ExtResource( 1 )
 hframes = 2
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0, -24 )
+position = Vector2( 0, 11 )
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -32, 9, 0, 24, 32, 9, 0, -8 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0, 35 )
 stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
