@@ -4,7 +4,7 @@ export var atk_pwr = 1
 
 var explosion = preload("res://scenes/Explosion.tscn")
 
-var bullet_speed = 1200
+var bullet_speed = 2000
 
 var originator
 var target_group
@@ -15,13 +15,11 @@ func _ready():
 	global_position = supplied_pos
 	rotation = supplied_rot
 	self.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(supplied_rot))
-	#print(global_position)
 	
 	# Offest bullet location
 	self.global_position = Vector2(2 * self.global_position.x - $"BulletSprite".global_position.x, 2 * self.global_position.y - $"BulletSprite".global_position.y)	
 	# Offset Terrain Collider
 	$"TerrainCollider".global_position = Vector2($"BulletSprite".global_position.x, $"BulletSprite".global_position.y + 15)
-	#print(global_position)
 
 func destroy():
 	var explosion_instance = explosion.instance()
@@ -31,12 +29,14 @@ func destroy():
 
 func _on_BulletCollider_body_entered(body):
 	# Handle HitBox
+	if body.name == "Player":
+		return
+	
 	if !body.is_in_group(originator) and body.name != "TM-Walls":
 		destroy()
 		
 	if body.is_in_group(target_group) and !body.is_in_group(originator) and !body.is_in_group("cannot_damage"):
 		# Access enemy script and apply damage
-		print(body.get_owner().name)
 		body.get_owner().hurt(atk_pwr)
 
 func _on_TerrainCollider_body_entered(body):

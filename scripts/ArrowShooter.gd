@@ -1,7 +1,10 @@
 extends Node2D
+
 var bullet = preload("res://scenes/Bullet.tscn")
 var triggers = []
 var can_fire = false
+
+onready var arrow_stream = get_node("ArrowSound")
 
 func _ready():
 	triggers = get_node("Triggers").get_children()
@@ -15,6 +18,8 @@ func shoot(instance_id):
 	if !can_fire:
 		return
 	
+	arrow_stream.play()
+	
 	var position = $".".get_global_position()
 	position.x -= 20
 	position.y -= 20
@@ -26,3 +31,5 @@ func shoot(instance_id):
 	bullet_instance.supplied_rot = 27*PI/32
 	get_tree().root.get_node("/root/Labyrinth/YSort").call_deferred("add_child", bullet_instance)
 	can_fire = false
+	yield (get_tree().create_timer(arrow_stream.stream.get_length()), "timeout")
+	arrow_stream.stop()

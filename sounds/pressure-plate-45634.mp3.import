@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pressure-plate-45634.mp3-79e4fbcf5ff90e3316cacbb82b104d80.mp3str"
+
+[deps]
+
+source_file="res://sounds/pressure-plate-45634.mp3"
+dest_files=[ "res://.import/pressure-plate-45634.mp3-79e4fbcf5ff90e3316cacbb82b104d80.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

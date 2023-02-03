@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/monster-breathing.mp3-6955dbf8b0b859edc6095a06e96c9e7a.mp3str"
+
+[deps]
+
+source_file="res://sounds/monster-breathing.mp3"
+dest_files=[ "res://.import/monster-breathing.mp3-6955dbf8b0b859edc6095a06e96c9e7a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

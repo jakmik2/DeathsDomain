@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/damage.mp3-83b87f09aca387345de5573923a4f939.mp3str"
+
+[deps]
+
+source_file="res://sounds/damage.mp3"
+dest_files=[ "res://.import/damage.mp3-83b87f09aca387345de5573923a4f939.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

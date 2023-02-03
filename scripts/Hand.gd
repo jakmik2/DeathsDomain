@@ -30,6 +30,7 @@ func _process(delta):
 		pos = $"HandBulletBox-R".global_position
 	
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
+		$"GunSound".play()
 		anim.play("recoil")
 		Global.play_camera_anim("recoil")
 		Global.click()
@@ -48,6 +49,8 @@ func _process(delta):
 		self.get_owner().bullets -= 1
 		yield(anim, "animation_finished")
 		can_fire = true
+		if $"GunSound".playing == true:
+			$"GunSound".stop()
 		anim.play("idle")
 
 func _on_GunshotAlertRange_body_entered(body):

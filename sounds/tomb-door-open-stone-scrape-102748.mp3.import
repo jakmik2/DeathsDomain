@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tomb-door-open-stone-scrape-102748.mp3-fa4edfbbc104b028e4b0f2f19ddb02f7.mp3str"
+
+[deps]
+
+source_file="res://sounds/tomb-door-open-stone-scrape-102748.mp3"
+dest_files=[ "res://.import/tomb-door-open-stone-scrape-102748.mp3-fa4edfbbc104b028e4b0f2f19ddb02f7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

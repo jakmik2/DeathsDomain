@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Sprites/monster/monster-damage-sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Mob.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Sprites/monster/monster-dead.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/monster/monster-sheet.png" type="Texture" id=7]
 [ext_resource path="res://scripts/HitBox.gd" type="Script" id=8]
+[ext_resource path="res://sounds/monster-breathing.mp3" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=10]
 
@@ -179,8 +180,8 @@ tracks/2/keys = {
 }
 
 [node name="Mob" type="KinematicBody2D" groups=["Enemy"]]
-collision_layer = 0
-collision_mask = 5
+collision_layer = 32
+collision_mask = 36
 script = ExtResource( 2 )
 
 [node name="TerrainCollider" type="CollisionPolygon2D" parent="."]
@@ -235,6 +236,12 @@ anims/Death = SubResource( 13 )
 anims/Hurt = SubResource( 12 )
 anims/Idle = ExtResource( 4 )
 anims/RESET = SubResource( 8 )
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Idle" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 9 )
+attenuation = 12.996
 
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_Detection_radius_body_entered"]
 [connection signal="body_exited" from="DetectionRadius" to="." method="_on_Detection_radius_body_exited"]
