@@ -22,8 +22,12 @@ var atk_pwr = 1
 # AI
 var strategy = "follow"
 
+# Sounds
+onready var idle_stream = get_node("Sounds/Idle")
+
 func _ready():
 	anim.play("Idle")
+	idle_stream.play()
 	
 func _process(delta):
 	if health == 0 and alive:
@@ -77,6 +81,7 @@ func death():
 	$"TerrainCollider".disabled = true
 	yield(anim, "animation_finished")
 	anim.play("Dead")
+	idle_stream.stop()
 
 func alert(p):
 	strategy = "alerted"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/labored-breathing.mp3-11e7af968a187b25a9b8e338e5cd6b00.mp3str"
+
+[deps]
+
+source_file="res://sounds/labored-breathing.mp3"
+dest_files=[ "res://.import/labored-breathing.mp3-11e7af968a187b25a9b8e338e5cd6b00.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

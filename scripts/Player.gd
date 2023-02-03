@@ -11,6 +11,7 @@ var current_health = 4
 var atk_pwr = 1
 
 var status = FINE
+var last_status = status
 
 # Action statuses
 var shaking = false
@@ -27,15 +28,19 @@ var pulse_timer = 0
 
 # Sounds
 onready var damage_stream = get_node("Sounds/Damage")
+onready var swinging_stream = get_node("Sounds/Attack")
 onready var walking_stream = get_node("Sounds/Walking")
+onready var bandaging_stream = get_node("Sounds/Bandaging")
+onready var breathing_stream = get_node("Sounds/Breathing")
 
 ## Walking / Limping
 var walking = load("res://sounds/indoor-footsteps.mp3")
-#var limping = load("res://sounds/")
+var limping = load("res://sounds/footstep-drag-indoors.mp3")
 
 func _ready():
 	$"AnimationPlayer".play("idle")
 	Global.connect("pick_up", self, "pick_up")
+	walking_stream.stream = walking
 
 func _process(delta):	
 	# Check Status of player
@@ -48,7 +53,7 @@ func _process(delta):
 	elif current_health == 0:
 		status = DEAD
 	
-	eval_status(delta)
+	eval_status()
 	update_inventory()
 
 func _physics_process(delta):
@@ -72,10 +77,12 @@ func _physics_process(delta):
 		if shaking:
 			apply_camera_shake()
 		$"AnimationPlayer".play("heal")
+		bandaging_stream.play()
 		yield ($"AnimationPlayer", "animation_finished")
 		healing = false
 		bandages -= 1
 		current_health += 1
+		bandaging_stream.stop()
 		$"AnimationPlayer".play("idle")
 		
 	if Input.is_action_just_pressed("melee_attack"):
@@ -84,9 +91,11 @@ func _physics_process(delta):
 			$"PlayerSprite".scale.x = 1
 		else:
 			$"PlayerSprite".scale.x = -1
+		swinging_stream.play()
 		$"AnimationPlayer".play("attack")
 		yield($"AnimationPlayer", "animation_finished")
 		swinging = false
+		swinging_stream.stop()
 		$"AnimationPlayer".play("idle")
 		$"PlayerSprite".scale.x = 1
 	
@@ -130,18 +139,26 @@ func pick_up(item):
 		{"bullets": var x}:
 			bullets += x
 
-func eval_status(delta):
+func eval_status():
 	match status:
 		FINE:
 			Global.play_camera_anim("idle")
 			Global.update_hud("health", "FINE")
+			if status != last_status:
+				walking_stream.stream = walking
+				if breathing_stream.playing:
+					breathing_stream.stop()
 		WOUNDED:
 			Global.play_camera_anim("Pain")
 			Global.update_hud("health", "WOUNDED")
+			if status != last_status:
+				walking_stream.stream = limping
+				breathing_stream.play()
 		SICK:
 			pass # Set camera to sick state sick state
 		DEAD:
 			pass # Activate dead process
+	last_status = status
 
 func hurt(dmg):
 	current_health -= dmg

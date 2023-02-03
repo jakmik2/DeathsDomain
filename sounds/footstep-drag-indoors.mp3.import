@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/footstep-drag-indoors.mp3-4b87a76b80c5a07f5d6a46f946827955.mp3str"
+
+[deps]
+
+source_file="res://sounds/footstep-drag-indoors.mp3"
+dest_files=[ "res://.import/footstep-drag-indoors.mp3-4b87a76b80c5a07f5d6a46f946827955.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

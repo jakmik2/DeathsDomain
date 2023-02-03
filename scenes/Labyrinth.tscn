@@ -83,10 +83,10 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 133, 139 )
+position = Vector2( 35, 137 )
 
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 542, 256 )
+position = Vector2( 225, 163 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 596, 93 )
@@ -153,6 +153,7 @@ position = Vector2( 94, -90 )
 
 [node name="Cursor" parent="." instance=ExtResource( 11 )]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Soundtrack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+volume_db = -10.0
 autoplay = true

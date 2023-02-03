@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bandaging.mp3-971fe61102a4033bc9e07a9321f5cbc4.mp3str"
+
+[deps]
+
+source_file="res://sounds/bandaging.mp3"
+dest_files=[ "res://.import/bandaging.mp3-971fe61102a4033bc9e07a9321f5cbc4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
