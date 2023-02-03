@@ -83,10 +83,10 @@ tile_data = PoolIntArray( -851963, 1, 0, -851962, 1, 0, -851961, 1, 0, -851960, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 35, 137 )
+position = Vector2( 109, 118 )
 
 [node name="Mob3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 163 )
+position = Vector2( 555, 263 )
 
 [node name="Mob2" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 596, 93 )
@@ -109,11 +109,11 @@ tile_data = PoolIntArray( -655348, 0, 0, -589814, 0, 0, -589813, 0, 0, -589812, 
 [node name="ArrowShooter" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 256, 96 )
 
-[node name="Triggers" type="Node2D" parent="YSort/ArrowShooter"]
-position = Vector2( 18, 32 )
+[node name="Triggers" type="YSort" parent="YSort/ArrowShooter"]
+position = Vector2( -50, -7 )
 
 [node name="TrapTile" parent="YSort/ArrowShooter/Triggers" instance=ExtResource( 7 )]
-position = Vector2( -82, -35 )
+position = Vector2( -14, 4 )
 
 [node name="TileOpenedDoor" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 179, -39 )

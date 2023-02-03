@@ -12,4 +12,5 @@ position = Vector2( 0, -40 )
 texture = ExtResource( 1 )
 
 [node name="ArrowSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -32, -24 )
 stream = ExtResource( 3 )
