@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/item-equip-6904.mp3-e4e1ff433991acd79f103eb119ae778f.mp3str"
+
+[deps]
+
+source_file="res://sounds/item-equip-6904.mp3"
+dest_files=[ "res://.import/item-equip-6904.mp3-e4e1ff433991acd79f103eb119ae778f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

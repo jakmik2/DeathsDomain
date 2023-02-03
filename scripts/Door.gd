@@ -27,11 +27,17 @@ func check_code(instance_id):
 
 	if code == code_from_levers:
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", true)
+		$"AudioStreamPlayer2D".play()
 		anim.play("Open")
 		status = "openned"
+		yield(anim,"animation_finished")
+		$"AudioStreamPlayer2D".stop()
 	elif status == "openned":
+		$"AudioStreamPlayer2D".play()
 		anim.play("Close")
 		status = "closed"
+		yield(anim,"animation_finished")
+		$"AudioStreamPlayer2D".stop()
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", false)
 	else:
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", false)

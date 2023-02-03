@@ -12,8 +12,8 @@ var atk_pwr = 1
 
 var status = FINE
 
+# Action statuses
 var shaking = false
-
 var healing = false
 var swinging = false
 

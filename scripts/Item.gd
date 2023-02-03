@@ -7,7 +7,9 @@ var player = false
 
 func _process(delta):
 	if player and Input.is_action_just_pressed("use"):
+		$"PickUpSound".play()
 		Global.pick_up({item_name : self.count})
+		yield ($"PickUpSound", "finished")
 		queue_free()
 
 

@@ -53,7 +53,6 @@ func _physics_process(delta):
 		resetting = false
 		
 	if strategy == "alerted" and within_range():
-		print(within_range())
 		strategy = "follow"
 	
 	if abs(motion.x) > 0:
