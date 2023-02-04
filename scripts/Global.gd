@@ -2,6 +2,7 @@ extends Node2D
 
 signal lever_changed(value)
 signal pick_up(value)
+signal deactivate()
 
 signal toggle_shake(value, axis)
 
@@ -13,6 +14,8 @@ signal play_camera_anim(anim)
 signal fade_volume(direction)
 
 signal click()
+
+signal popup(text)
 
 func lever_changed(string):
 	emit_signal("lever_changed", string)
@@ -37,3 +40,9 @@ func click():
 
 func fade_volume(direction):
 	emit_signal("fade_volume", direction)
+
+func popup(text):
+	emit_signal("popup", text)
+	
+func deactivate():
+	emit_signal("deactivate")

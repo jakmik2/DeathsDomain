@@ -15,12 +15,14 @@ onready var left_flash = get_node("HandBulletBox-L/Light2D")
 onready var right_flash = get_node("HandBulletBox-R/Light2D")
 
 var flash_node
+var active = true
 
 func _ready():
 	anim.play("idle")
 	pos = $"HandBulletBox-L".global_position
 	left_flash.visible = false
 	right_flash.visible = false
+	Global.connect("deactivate", self, "deactivate")
 
 func _process(delta):
 	look_at(get_global_mouse_position())
@@ -37,7 +39,7 @@ func _process(delta):
 		pos = $"HandBulletBox-R".global_position
 		flash_node = right_flash
 	
-	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
+	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0 and active:
 		$"GunSound".play()
 		anim.play("recoil")
 		flash_node.visible = true
@@ -62,6 +64,9 @@ func _process(delta):
 		if $"GunSound".playing == true:
 			$"GunSound".stop()
 		anim.play("idle")
+
+func deactivate():
+	active = !active
 
 func _on_GunshotAlertRange_body_entered(body):
 	if body.is_in_group("Enemy"):
