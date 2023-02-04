@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Sprites/monster/monster-damage-sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Mob.gd" type="Script" id=2]
@@ -6,9 +6,11 @@
 [ext_resource path="res://scenes/animations/monster/monster-idle.tres" type="Animation" id=4]
 [ext_resource path="res://Sprites/monster/monster-death-sheet.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/monster/monster-dead.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/monster/monster-sheet.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/monster/monster-damage-sheet_n.png" type="Texture" id=7]
 [ext_resource path="res://scripts/HitBox.gd" type="Script" id=8]
 [ext_resource path="res://sounds/monster-breathing.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Sprites/monster/monster-death-sheet-sheet_n.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/monster/monster-dead_n.png" type="Texture" id=11]
 
 [sub_resource type="CircleShape2D" id=15]
 
@@ -61,6 +63,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 1 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:normal_map")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "Death"
@@ -101,6 +115,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 4 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:normal_map")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "Hurt"
@@ -140,6 +166,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:normal_map")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -209,7 +247,8 @@ shape = SubResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -36.059 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
+normal_map = ExtResource( 11 )
 hframes = 2
 
 [node name="HurtBox" type="Area2D" parent="Sprite"]

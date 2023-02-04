@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 onready var bandage_counter = get_node("Bandages/Count")
 onready var bullets_counter = get_node("Bullets/Count")

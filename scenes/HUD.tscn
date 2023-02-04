@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/items/bullets.png" type="Texture" id=2]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=3]
 
-[node name="HUD" type="Node2D"]
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource( 3 )
 
 [node name="Bandages" type="Node2D" parent="."]

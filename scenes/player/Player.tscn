@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Sprites/base-player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://sounds/whoosh.mp3" type="AudioStream" id=14]
 [ext_resource path="res://sounds/bandaging.mp3" type="AudioStream" id=15]
 [ext_resource path="res://sounds/labored-breathing.mp3" type="AudioStream" id=16]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 6.5, 19 )
@@ -189,6 +190,7 @@ visible = false
 position = Vector2( 0, -29 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
+light_mask = 2
 position = Vector2( 0, -32 )
 texture = ExtResource( 9 )
 flip_h = true
@@ -232,7 +234,8 @@ anims/idle = ExtResource( 5 )
 [node name="PlayerCam" parent="." instance=ExtResource( 4 )]
 
 [node name="HUD" parent="PlayerCam" instance=ExtResource( 8 )]
-position = Vector2( -427, -215 )
+offset = Vector2( -431.42, -210 )
+transform = Transform2D( 1, 0, 0, 1, -431.42, -210 )
 
 [node name="CameraArm" type="Node2D" parent="."]
 script = ExtResource( 11 )
@@ -257,5 +260,13 @@ stream = ExtResource( 15 )
 
 [node name="Breathing" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 16 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, -10 )
+scale = Vector2( 0.45, 0.22 )
+texture = ExtResource( 17 )
+color = Color( 0.972549, 0.682353, 0.376471, 1 )
+range_item_cull_mask = 3
+shadow_enabled = true
 
 [connection signal="body_entered" from="PlayerSprite/HurtBox" to="." method="_on_HurtBox_body_entered"]
