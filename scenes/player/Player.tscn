@@ -181,6 +181,7 @@ tracks/3/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
+position = Vector2( 472, 264 )
 collision_layer = 33
 collision_mask = 36
 script = ExtResource( 2 )
@@ -234,8 +235,8 @@ anims/idle = ExtResource( 5 )
 [node name="PlayerCam" parent="." instance=ExtResource( 4 )]
 
 [node name="HUD" parent="PlayerCam" instance=ExtResource( 8 )]
-offset = Vector2( -431.42, -210 )
-transform = Transform2D( 1, 0, 0, 1, -431.42, -210 )
+offset = Vector2( 44.164, 49.55 )
+transform = Transform2D( 1, 0, 0, 1, 44.164, 49.55 )
 
 [node name="CameraArm" type="Node2D" parent="."]
 script = ExtResource( 11 )
@@ -262,8 +263,8 @@ stream = ExtResource( 15 )
 stream = ExtResource( 16 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 0, -10 )
-scale = Vector2( 0.45, 0.22 )
+position = Vector2( -2.28882e-05, 0.499994 )
+scale = Vector2( 0.580078, 0.297852 )
 texture = ExtResource( 17 )
 color = Color( 0.972549, 0.682353, 0.376471, 1 )
 range_item_cull_mask = 3

@@ -11,10 +11,16 @@ var rot_coef = 0
 var pos
 
 onready var anim = get_node("AnimationPlayer")
+onready var left_flash = get_node("HandBulletBox-L/Light2D")
+onready var right_flash = get_node("HandBulletBox-R/Light2D")
+
+var flash_node
 
 func _ready():
 	anim.play("idle")
 	pos = $"HandBulletBox-L".global_position
+	left_flash.visible = false
+	right_flash.visible = false
 
 func _process(delta):
 	look_at(get_global_mouse_position())
@@ -24,16 +30,20 @@ func _process(delta):
 		rot_coef = PI
 		pos = $"HandBulletBox-L".global_position
 		$"HandSprite".flip_h = false
+		flash_node = left_flash
 	else:
 		$"HandSprite".flip_h = true
 		rot_coef = 0
 		pos = $"HandBulletBox-R".global_position
+		flash_node = right_flash
 	
 	if Input.is_action_pressed("fire") and can_fire and self.get_owner().bullets > 0:
 		$"GunSound".play()
 		anim.play("recoil")
+		flash_node.visible = true
 		Global.play_camera_anim("recoil")
 		Global.click()
+		flash_node.visible = false
 		for enemy in enemies_in_range:
 			enemy.alert(get_owner().global_position)
 		

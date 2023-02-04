@@ -4,11 +4,15 @@ var shaking = false
 var amt
 var axis
 
+var current_anim
+
 func _ready():
 	Global.connect("toggle_shake", self, "toggle_shake")
 	Global.connect("set_camera_offset", self, "set_camera_offset")
 	Global.connect("play_camera_anim", self, "play_anim")
-	$"ScreenAnimation".play("idle")
+	play_anim("idle")
+	current_anim = "idle"
+	$"ColorRect".visible = true
 
 func _process(delta):
 	if shaking:
@@ -48,3 +52,5 @@ func set_camera_offset(pos):
 
 func play_anim(anim):
 	$"ScreenAnimation".play(anim)
+	yield($"ScreenAnimation", "animation_finished")
+	$"ScreenAnimation".play("idle")
