@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/menus/dialog.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Dialog.gd" type="Script" id=2]
+
+[node name="Dialog" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="DialogTex" type="TextureRect" parent="."]
+margin_left = 170.0
+margin_top = 348.0
+margin_right = 789.0
+margin_bottom = 473.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogTex"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 14.0
+margin_right = -27.0
+margin_bottom = -35.0
+text = "this is text"
+
+[node name="Button" type="Button" parent="DialogTex"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -99.0
+margin_top = -30.0
+margin_right = -20.0
+margin_bottom = -10.0
+text = "next..."
+
+[connection signal="pressed" from="DialogTex/Button" to="." method="_on_Button_pressed"]
