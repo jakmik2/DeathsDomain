@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Lever.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/NextLevel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/LevelScript.gd" type="Script" id=9]
 [ext_resource path="res://scripts/Soundtrack.gd" type="Script" id=10]
+[ext_resource path="res://scenes/menus/Dialog.tscn" type="PackedScene" id=11]
 
 [node name="Labyrinth" type="Node2D" groups=["cannot_damage"]]
 script = ExtResource( 9 )
@@ -57,7 +58,10 @@ script = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="Soundtrack"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2( 328, 86 )
 color = Color( 0, 0, 0, 1 )
+
+[node name="Dialog" parent="." instance=ExtResource( 11 )]
 
 [connection signal="tween_completed" from="Soundtrack/Tween" to="Soundtrack" method="_on_Tween_tween_completed"]
