@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Sprites/monster/monster-damage-sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Mob.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Sprites/monster/monster-sheet.png" type="Texture" id=7]
 [ext_resource path="res://scripts/HitBox.gd" type="Script" id=8]
 [ext_resource path="res://sounds/monster-breathing.mp3" type="AudioStream" id=9]
+
+[sub_resource type="CircleShape2D" id=15]
 
 [sub_resource type="CircleShape2D" id=10]
 
@@ -184,9 +186,11 @@ collision_layer = 32
 collision_mask = 36
 script = ExtResource( 2 )
 
-[node name="TerrainCollider" type="CollisionPolygon2D" parent="."]
-scale = Vector2( 1.938, 1 )
-polygon = PoolVector2Array( -11.3519, 0, -4.12797, -10, 5.15996, -10, 11.8679, 0, 5.67595, 10, -4.64396, 10 )
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="TerrainCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )
 
 [node name="DetectionRadius" type="Area2D" parent="."]
 collision_layer = 0
