@@ -10,6 +10,8 @@ signal update_hud(item, val)
 signal set_camera_offset(pos)
 signal play_camera_anim(anim)
 
+signal fade_volume(direction)
+
 signal click()
 
 func lever_changed(string):
@@ -32,3 +34,6 @@ func play_camera_anim(anim):
 
 func click():
 	emit_signal("click")
+
+func fade_volume(direction):
+	emit_signal("fade_volume", direction)

@@ -142,7 +142,6 @@ func pick_up(item):
 func eval_status():
 	match status:
 		FINE:
-			Global.play_camera_anim("idle")
 			Global.update_hud("health", "FINE")
 			if status != last_status:
 				walking_stream.stream = walking
