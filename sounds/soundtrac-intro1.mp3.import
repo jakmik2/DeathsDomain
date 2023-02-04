@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/soundtrac-intro1.mp3-9107c55a1082cd0854b3690fa6ff4cac.mp3str"
+
+[deps]
+
+source_file="res://sounds/soundtrac-intro1.mp3"
+dest_files=[ "res://.import/soundtrac-intro1.mp3-9107c55a1082cd0854b3690fa6ff4cac.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

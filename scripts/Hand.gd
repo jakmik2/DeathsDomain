@@ -35,7 +35,7 @@ func _process(delta):
 		Global.play_camera_anim("recoil")
 		Global.click()
 		for enemy in enemies_in_range:
-			enemy.alert(get_owner().position)
+			enemy.alert(get_owner().global_position)
 		
 		var bullet_instance = bullet.instance()
 		bullet_instance.originator = "player"
