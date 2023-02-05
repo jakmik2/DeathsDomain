@@ -39,7 +39,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=11]
 resource_name = "attack"
-length = 0.7
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
@@ -47,7 +47,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 5 ]
@@ -328,7 +328,7 @@ stream = ExtResource( 16 )
 position = Vector2( -2.28882e-05, 0.499994 )
 scale = Vector2( 0.580078, 0.297852 )
 texture = ExtResource( 17 )
-color = Color( 0.972549, 0.682353, 0.376471, 1 )
+color = Color( 0.713726, 0.568627, 0.4, 1 )
 energy = 1.2
 range_item_cull_mask = 3
 shadow_enabled = true

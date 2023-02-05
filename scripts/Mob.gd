@@ -47,7 +47,7 @@ func _physics_process(delta):
 		resetting = true
 	
 	if abs(velocity.x) > 0:
-		sprite_body.scale.x = sign(velocity.x)
+		$"AnimationPlayer".play("walk")
 	
 	move_and_slide(velocity)
 	
@@ -55,7 +55,6 @@ func hurt(dmg):
 	if health > 0:
 		health -= dmg
 		anim.play("Hurt")
-		anim.play("small-blood")
 		yield(anim, "animation_finished")
 		anim.play("Idle")
 

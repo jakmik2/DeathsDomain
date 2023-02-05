@@ -112,7 +112,6 @@ light_mask = 2
 position = Vector2( 0, -3 )
 texture = ExtResource( 6 )
 hframes = 3
-frame = 2
 
 [node name="HandBulletBox-L" type="Node2D" parent="."]
 position = Vector2( -23, -6 )
