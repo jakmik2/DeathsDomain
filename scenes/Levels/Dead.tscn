@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
+
+[node name="Dead" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -555.0
+margin_top = -423.0
+margin_right = 1210.0
+margin_bottom = 824.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]

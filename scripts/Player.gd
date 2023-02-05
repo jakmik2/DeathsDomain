@@ -38,6 +38,10 @@ var walking = load("res://sounds/indoor-footsteps.mp3")
 var limping = load("res://sounds/footstep-drag-indoors.mp3")
 
 func _ready():
+	if get_parent().name == "Dead":
+		status = DEAD
+		death()
+
 	# Get Player vars from storage
 	current_health = int(Global.current_health)
 	bandages = int(Global.bandages)
@@ -49,6 +53,8 @@ func _ready():
 
 func _process(delta):	
 	if status == DEAD:
+		if !$"PlayerCam/Dead".visible:
+			$"PlayerCam/Dead".visible = true
 		return
 	
 	# Check Status of player
@@ -188,6 +194,7 @@ func _physics_process(delta):
 			$"PlayerSprite".scale.x = -1
 		else:
 			$"PlayerSprite".scale.x = 1
+			
 
 func update_inventory():
 	Global.update_hud("bandages", str(bandages))
@@ -218,11 +225,13 @@ func eval_status():
 		SICK:
 			pass # Set camera to sick state sick state
 		DEAD:
-			death()
+			Global.play_camera_anim("fade_to_black")	
+			get_tree().change_scene("res://scenes/Levels/Dead.tscn")
 	last_status = status
 
 func hurt(dmg):
 	current_health -= dmg
+	print("taking damage")
 	$"AnimationPlayer".play("hurt")
 	damage_stream.play()
 	yield($"AnimationPlayer", "animation_finished")
@@ -235,10 +244,10 @@ func apply_camera_shake(amt=1,axis=0):
 	shaking = !shaking
 
 func death():
-	Global.play_camera_anim("fade_to_black")
+	$"PlayerSprite".visible = false
+	$"Hand/HandSprite".visible = false
 	yield(get_tree().create_timer(0.5), "timeout")
 	$"PlayerCam/Dead".visible = true
-	Global.play_camera_anim("black_screen")
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group("Enemy"):

@@ -36,6 +36,7 @@ state = "1"
 
 [node name="SomethingInteresting" parent="YSort/ExitDoor/Levers/Lever2" index="3" instance=ExtResource( 7 )]
 position = Vector2( 691, 3 )
+deactivate_after_use = true
 
 [node name="Lever3" parent="YSort/ExitDoor/Levers" index="2" instance=ExtResource( 2 )]
 position = Vector2( -416, -96 )
@@ -43,21 +44,12 @@ state = "1"
 
 [node name="Bullets" parent="YSort/Items" index="0" instance=ExtResource( 4 )]
 position = Vector2( -98, 262 )
-count = 5
+count = 10
 
 [node name="BulletsGunInstructions" parent="YSort/Items/Bullets" index="3" instance=ExtResource( 5 )]
 
 [node name="Bandage" parent="YSort/Items" index="1" instance=ExtResource( 6 )]
 position = Vector2( 128, -24 )
-
-[node name="Mob" parent="YSort/Items/Bandage" index="3" instance=ExtResource( 3 )]
-position = Vector2( -81, 207 )
-
-[node name="Mob2" parent="YSort/Items/Bandage" index="4" instance=ExtResource( 3 )]
-position = Vector2( -16, 255 )
-
-[node name="Mob3" parent="YSort/Items/Bandage" index="5" instance=ExtResource( 3 )]
-position = Vector2( -285, 139 )
 
 [node name="Bandage3" parent="YSort/Items" index="2" instance=ExtResource( 6 )]
 position = Vector2( 467, 168 )
