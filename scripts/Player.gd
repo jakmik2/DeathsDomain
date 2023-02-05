@@ -92,7 +92,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("melee_attack"):
 		swinging = true
-		if get_local_mouse_position().x < 0:
+		if get_local_mouse_position().x > 0 and not $"PlayerSprite".flip_h:
 			$"PlayerSprite".scale.x = -1
 		else:
 			$"PlayerSprite".scale.x = 1

@@ -39,7 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=11]
 resource_name = "attack"
-length = 0.6
+length = 0.533333
+step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
@@ -47,7 +48,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.333333, 0.466667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 5 ]
@@ -246,7 +247,7 @@ script = ExtResource( 2 )
 
 [node name="Hand" parent="." instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 0, -30 )
+position = Vector2( 0, -25 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 light_mask = 2
@@ -254,7 +255,6 @@ position = Vector2( 0, -32 )
 texture = ExtResource( 18 )
 hframes = 6
 vframes = 9
-frame = 48
 
 [node name="HurtBox" type="Area2D" parent="PlayerSprite"]
 position = Vector2( 0, 32 )
@@ -264,6 +264,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/HurtBox"]
 position = Vector2( -22.5, -28 )
 shape = SubResource( 12 )
+disabled = true
 
 [node name="TerrainCollider" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 0 )

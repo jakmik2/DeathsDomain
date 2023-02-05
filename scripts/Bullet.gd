@@ -2,8 +2,6 @@ extends RigidBody2D
 
 export var atk_pwr = 1
 
-var explosion = preload("res://scenes/Explosion.tscn")
-
 var bullet_speed = 2000
 
 var originator
