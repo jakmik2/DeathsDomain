@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$"VBoxContainer/VBoxContainer/StartButton".grab_focus()
+	$"VBoxContainer/StartButton".grab_focus()
 
 
 func _on_StartButton_pressed():
