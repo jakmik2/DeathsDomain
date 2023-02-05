@@ -5,6 +5,8 @@ var status = "closed"
 var code_from_levers = ""
 var levers = []
 
+var evaluating_response = false
+
 onready var anim = get_node("AnimationPlayer")
 
 func _ready():
@@ -14,6 +16,9 @@ func _ready():
 	Global.connect("lever_changed", self, "check_code")
 	
 func check_code(instance_id):
+	if evaluating_response:
+		return
+	evaluating_response = true
 	var code_from_levers = ""
 	var in_levers = false
 	
@@ -41,3 +46,5 @@ func check_code(instance_id):
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", false)
 	else:
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", false)
+		
+	evaluating_response = false
