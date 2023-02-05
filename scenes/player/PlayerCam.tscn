@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/BloodOverlay.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=3]
@@ -82,6 +82,33 @@ tracks/3/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
+[sub_resource type="Animation" id=12]
+resource_name = "black_screen"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
 [sub_resource type="Animation" id=11]
 resource_name = "fade_from_black"
 tracks/0/type = "value"
@@ -150,6 +177,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Dead:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "recoil"
@@ -195,15 +234,34 @@ expand = true
 [node name="ScreenAnimation" type="AnimationPlayer" parent="."]
 anims/Pain = SubResource( 6 )
 anims/RESET = SubResource( 7 )
+anims/black_screen = SubResource( 12 )
 anims/fade_from_black = SubResource( 11 )
 anims/fade_to_black = SubResource( 10 )
 anims/idle = SubResource( 9 )
 anims/recoil = SubResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 margin_left = -490.0
 margin_top = -279.0
 margin_right = 537.0
 margin_bottom = 298.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="Dead" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -147.0
+margin_top = -22.0
+margin_right = 152.0
+margin_bottom = 129.0
+bbcode_enabled = true
+bbcode_text = "[center]YOU DIED[/center]"
+text = "YOU DIED"
+
+[node name="Button" type="Button" parent="Dead"]
+margin_left = 96.0
+margin_top = 77.0
+margin_right = 199.0
+margin_bottom = 97.0
+text = "Return to Title"
+
+[connection signal="pressed" from="Dead/Button" to="." method="_on_Button_pressed"]

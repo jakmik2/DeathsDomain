@@ -1,6 +1,5 @@
 extends Node2D
 
-
 var current_health = 4
 var bullets = 0
 var bandages = 0
@@ -21,6 +20,11 @@ signal fade_volume(direction)
 signal click()
 
 signal popup(text)
+
+func reset():
+	current_health = 4
+	bullets = 0
+	bandages = 0
 
 func lever_changed(string):
 	emit_signal("lever_changed", string)
@@ -46,6 +50,8 @@ func update_hud(item, val):
 					emit_signal("update_hud", item, "FINE")
 				1, 2:
 					emit_signal("update_hud", item, "WOUNDED")
+				0:
+					emit_signal("update_hud", item, "DEAD")
 
 func set_camera_offset(pos):
 	emit_signal("set_camera_offset", pos)

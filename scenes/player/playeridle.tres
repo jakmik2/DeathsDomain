@@ -30,7 +30,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("PlayerSprite/HurtBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("PlayerSprite/HurtBox/CollisionPolygon2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
