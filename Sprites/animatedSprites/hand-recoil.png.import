@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player-melee-attack.png-4ac75017f8ad2cc036afffbaab8015af.stex"
+path="res://.import/hand-recoil.png-2be2cd4cc1d25ae2fcc230fd64c8fb0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/player-melee-attack.png"
-dest_files=[ "res://.import/player-melee-attack.png-4ac75017f8ad2cc036afffbaab8015af.stex" ]
+source_file="res://Sprites/animatedSprites/hand-recoil.png"
+dest_files=[ "res://.import/hand-recoil.png-2be2cd4cc1d25ae2fcc230fd64c8fb0e.stex" ]
 
 [params]
 

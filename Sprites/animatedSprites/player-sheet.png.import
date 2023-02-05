@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player-healing-sheet.png-587e2da1bdf1d8e5abc2e86dabc5ba20.stex"
+path="res://.import/player-sheet.png-520b396133f0410b59e33e738544fb39.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/player-healing-sheet.png"
-dest_files=[ "res://.import/player-healing-sheet.png-587e2da1bdf1d8e5abc2e86dabc5ba20.stex" ]
+source_file="res://Sprites/animatedSprites/player-sheet.png"
+dest_files=[ "res://.import/player-sheet.png-520b396133f0410b59e33e738544fb39.stex" ]
 
 [params]
 
