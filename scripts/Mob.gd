@@ -14,6 +14,8 @@ var attacking = false
 var resetting = false
 var atk_rate = 0.3
 
+var reset_time = 0
+
 var alive = true
 
 var atk_pwr = 1
@@ -42,7 +44,12 @@ func _physics_process(delta):
 	var velocity = direction * speed
 	
 	if strategy == "reset":
+		reset_time += delta
 		velocity *= -1
+		if reset_time > 0.5:
+			strategy = "follow"
+			reset_time = 0
+			resetting = false
 	
 	if velocity. x < 0:
 		$"Sprite".scale.x = -1

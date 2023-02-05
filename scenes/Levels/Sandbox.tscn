@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/items/Bandage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Item.gd" type="Script" id=3]
 
 [node name="Labyrinth" instance=ExtResource( 1 )]
 
@@ -22,3 +23,4 @@ position = Vector2( 224, 128 )
 
 [node name="Bandage" parent="YSort/Items" index="0" instance=ExtResource( 2 )]
 position = Vector2( 23, 200 )
+script = ExtResource( 3 )

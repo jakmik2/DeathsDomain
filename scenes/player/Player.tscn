@@ -322,6 +322,7 @@ position = Vector2( 0, -32 )
 texture = ExtResource( 18 )
 hframes = 6
 vframes = 9
+frame = 42
 
 [node name="HurtBox" type="Area2D" parent="PlayerSprite"]
 position = Vector2( 0, 32 )
@@ -330,6 +331,7 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSprite/HurtBox"]
 polygon = PoolVector2Array( -23, -41, 51, 3, 36, 17, -9, 17, -28, 4, -34, -11, -32, -28 )
+disabled = true
 
 [node name="TerrainCollider" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 0 )
