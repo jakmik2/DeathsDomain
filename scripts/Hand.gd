@@ -31,10 +31,10 @@ func _process(delta):
 		rotation += PI
 		rot_coef = PI
 		pos = $"HandBulletBox-L".global_position
-		$"HandSprite".flip_h = false
+		$"HandSprite".flip_h = true
 		flash_node = left_flash
 	else:
-		$"HandSprite".flip_h = true
+		$"HandSprite".flip_h = false
 		rot_coef = 0
 		pos = $"HandBulletBox-R".global_position
 		flash_node = right_flash

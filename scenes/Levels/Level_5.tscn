@@ -50,6 +50,15 @@ count = 5
 [node name="Bandage" parent="YSort/Items" index="1" instance=ExtResource( 6 )]
 position = Vector2( 128, -24 )
 
+[node name="Mob" parent="YSort/Items/Bandage" index="3" instance=ExtResource( 3 )]
+position = Vector2( -81, 207 )
+
+[node name="Mob2" parent="YSort/Items/Bandage" index="4" instance=ExtResource( 3 )]
+position = Vector2( -16, 255 )
+
+[node name="Mob3" parent="YSort/Items/Bandage" index="5" instance=ExtResource( 3 )]
+position = Vector2( -285, 139 )
+
 [node name="Bandage3" parent="YSort/Items" index="2" instance=ExtResource( 6 )]
 position = Vector2( 467, 168 )
 

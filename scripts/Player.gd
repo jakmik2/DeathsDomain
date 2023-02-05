@@ -93,9 +93,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("melee_attack"):
 		swinging = true
 		if get_local_mouse_position().x < 0:
-			$"PlayerSprite".scale.x = 1
-		else:
 			$"PlayerSprite".scale.x = -1
+		else:
+			$"PlayerSprite".scale.x = 1
 		swinging_stream.play()
 		$"AnimationPlayer".play("attack")
 		yield($"AnimationPlayer", "animation_finished")
@@ -103,6 +103,7 @@ func _physics_process(delta):
 		swinging_stream.stop()
 		$"AnimationPlayer".play("idle")
 		$"PlayerSprite".scale.x = 1
+
 	
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
@@ -112,8 +113,10 @@ func _physics_process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
-		
+	
+	
 	if velocity.length() > 0:
+		$"PlayerSprite".scale.x = 1
 		if !walking_stream.playing:
 			walking_stream.play()
 		if limp_timer > 0.4 and limp_timer < 0.8:
@@ -127,11 +130,60 @@ func _physics_process(delta):
 			limp_timer = 0
 
 		velocity = velocity.normalized() * current_speed
+		
+		# Animation branches, need to implement some sort of hand rotation detection for north/south
+		if velocity.x == 0 and velocity.y < -1:
+			# North movement
+			if get_local_mouse_position().x > 0:
+				$"PlayerSprite".scale.x = -1
+			else:
+				$"PlayerSprite".scale.x = 1
+			$"AnimationPlayer".play("walk-north")
+		elif velocity.x > 1 and velocity.y < -1:
+			# Northeast movement
+			$PlayerSprite.flip_h = false
+			$"AnimationPlayer".play("walk-northeast")
+		elif velocity.x > 1 and velocity.y == 0:
+			# East movement
+			$PlayerSprite.flip_h = false
+			$"AnimationPlayer".play("walk-east")
+		elif velocity.x > 1 and velocity.y > 1:
+			# Southeast movement
+			$PlayerSprite.flip_h = false
+			$"AnimationPlayer".play("walk-southeast")
+		elif velocity.x == 0 and velocity.y > 1:
+			# South movement
+			if get_local_mouse_position().x < 0:
+				$"PlayerSprite".scale.x = -1
+			else:
+				$"PlayerSprite".scale.x = 1
+			$"AnimationPlayer".play("walk-south")
+		elif velocity.x < -1 and velocity. y > 1:
+			# Southwest movement
+			$PlayerSprite.flip_h = true
+			$"AnimationPlayer".play("walk-southeast")
+		elif velocity.x < -1 and velocity.y == 0:
+			# West movement
+			$PlayerSprite.flip_h = true
+			$"AnimationPlayer".play("walk-east")
+		elif velocity.x < -1 and velocity.y < -1:
+			# Northwest movement
+			$PlayerSprite.flip_h = true
+			$"AnimationPlayer".play("walk-northeast")
 
+		
 		move_and_slide(velocity, Vector2(0, -1))
 	
 	elif walking_stream.playing:
 		walking_stream.stop()
+	
+	else:
+		$PlayerSprite.flip_h = false
+		$"AnimationPlayer".play("idle")
+		if get_local_mouse_position().x < 0:
+			$"PlayerSprite".scale.x = -1
+		else:
+			$"PlayerSprite".scale.x = 1
 
 func update_inventory():
 	Global.update_hud("bandages", str(bandages))
