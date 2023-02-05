@@ -38,6 +38,11 @@ var walking = load("res://sounds/indoor-footsteps.mp3")
 var limping = load("res://sounds/footstep-drag-indoors.mp3")
 
 func _ready():
+	# Get Player vars from storage
+	current_health = int(Global.current_health)
+	bandages = int(Global.bandages)
+	bullets = int(Global.bullets)
+	
 	$"AnimationPlayer".play("idle")
 	Global.connect("pick_up", self, "pick_up")
 	walking_stream.stream = walking
@@ -50,7 +55,7 @@ func _process(delta):
 	elif current_health <= int(round(max_health / 2)):
 		status = WOUNDED
 		max_speed = 60
-	elif current_health == 0:
+	elif current_health <= 0:
 		status = DEAD
 	
 	eval_status()
@@ -142,14 +147,14 @@ func pick_up(item):
 func eval_status():
 	match status:
 		FINE:
-			Global.update_hud("health", "FINE")
+			Global.update_hud("health", current_health)
 			if status != last_status:
 				walking_stream.stream = walking
 				if breathing_stream.playing:
 					breathing_stream.stop()
 		WOUNDED:
 			Global.play_camera_anim("Pain")
-			Global.update_hud("health", "WOUNDED")
+			Global.update_hud("health", current_health)
 			if status != last_status:
 				walking_stream.stream = limping
 				if !breathing_stream.playing:
@@ -157,7 +162,7 @@ func eval_status():
 		SICK:
 			pass # Set camera to sick state sick state
 		DEAD:
-			pass # Activate dead process
+			death()
 	last_status = status
 
 func hurt(dmg):
@@ -172,6 +177,11 @@ func hurt(dmg):
 func apply_camera_shake(amt=1,axis=0):
 	Global.toggle_shake(amt, axis)
 	shaking = !shaking
+
+func death():
+	Global.play_camera_anim("out")
+	get_parent().get_parent().get_node("Dead").visable = true
+	get_tree().quit()
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group("Enemy"):

@@ -14,4 +14,4 @@ func update_hud(item, val):
 		"bullets":
 			bullets_counter.text = val
 		"health":
-			health_text.text = val
+			health_text.text = str(val)
