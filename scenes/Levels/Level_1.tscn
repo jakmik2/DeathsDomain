@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Interactable Objects/Instructions/LeverInstruction_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Interactable Objects/Instructions/SpaceBarInstructions.tscn" type="PackedScene" id=3]
 
 [node name="Labyrinth" instance=ExtResource( 1 )]
 
@@ -25,3 +26,9 @@ position = Vector2( 256, 112 )
 position = Vector2( -47, 26 )
 
 [node name="LeverInstruction" parent="YSort/ExitDoor/Levers/Lever" index="3" instance=ExtResource( 2 )]
+deactivate_after_use = false
+
+[node name="SpaceBarInstructions" parent="YSort/ExitDoor/Levers/Lever" index="4" instance=ExtResource( 3 )]
+text_content = "Press SPACE to pick up items and interact with the environment."
+automatic_trigger = true
+deactivate_after_use = true

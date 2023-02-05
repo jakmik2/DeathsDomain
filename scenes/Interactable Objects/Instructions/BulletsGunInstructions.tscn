@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Interactable Objects/BaseObject.tscn" type="PackedScene" id=1]
+
+[node name="BulletsGunInstructions" instance=ExtResource( 1 )]
+text_content = "Press SPACE to pick up bullets.{split}These will load your gun which you can aim and shoot by clicking LEFT MOUSE button but...{split}do so at your own peril.{split}Shooting will alert enemies of your location."
+automatic_trigger = true

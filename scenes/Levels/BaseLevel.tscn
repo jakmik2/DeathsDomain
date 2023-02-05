@@ -53,6 +53,8 @@ position = Vector2( -49, 38 )
 
 [node name="Items" type="YSort" parent="YSort"]
 
+[node name="Enemies" type="YSort" parent="YSort"]
+
 [node name="Cursor" parent="." instance=ExtResource( 6 )]
 
 [node name="Soundtrack" type="AudioStreamPlayer2D" parent="."]

@@ -64,6 +64,7 @@ func death():
 	$"HitBox/CollisionShape2D".disabled = true
 	$"AttackRadius/CollisionShape2D".disabled = true
 	$"TerrainCollider".disabled = true
+	$"Sprite/HurtBox/CollisionShape2D".disabled
 	yield(anim, "animation_finished")
 	anim.play("Dead")
 	idle_stream.stop()
@@ -93,7 +94,7 @@ func _on_AttackRadius_body_entered(body):
 
 func _on_HurtBox_body_entered(body):
 	get_node("Sprite/HurtBox/CollisionShape2D").set_deferred("disabled", true)
-	if body.name == "Player":
+	if body.name == "Player" and alive:
 		body.hurt(atk_pwr)
 		strategy = "reset"
 		

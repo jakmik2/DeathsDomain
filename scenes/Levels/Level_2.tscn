@@ -22,7 +22,7 @@ tile_data = PoolIntArray( -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 
 
 [node name="NextLevel" parent="YSort" index="3"]
 position = Vector2( 263, 109 )
-nextLevel = "StartingLevel"
+nextLevel = "Level_3"
 
 [node name="Door" parent="YSort" index="4" instance=ExtResource( 4 )]
 position = Vector2( -64, 144 )
@@ -40,5 +40,3 @@ position = Vector2( -98, -127 )
 
 [node name="Lever2" parent="YSort/ExitDoor/Levers" index="1" instance=ExtResource( 2 )]
 position = Vector2( 287, 94 )
-
-[node name="Enemies" type="YSort" parent="YSort" index="7"]

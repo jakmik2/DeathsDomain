@@ -12,6 +12,7 @@ func _ready():
 
 func popup(text):
 	queue = text.split("{split}")
+	ptr = 0
 	window_text.text = queue[ptr]
 	Global.deactivate()
 	if !self.visible:

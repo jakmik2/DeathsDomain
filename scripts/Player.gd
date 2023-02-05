@@ -19,8 +19,8 @@ var healing = false
 var swinging = false
 
 # Player Inventory
-export var bandages = 3
-export var bullets = 50
+export var bandages = 0
+export var bullets = 0
 
 # For Conditions
 var limp_timer = 0
@@ -114,11 +114,11 @@ func _physics_process(delta):
 		if limp_timer > 0.4 and limp_timer < 0.8:
 			current_speed = max_speed / 20
 			if !shaking:
-				apply_camera_shake()			
+				apply_camera_shake()
 		elif limp_timer > 0.8:
 			current_speed = max_speed
 			if shaking:
-				apply_camera_shake()			
+				apply_camera_shake()
 			limp_timer = 0
 
 		velocity = velocity.normalized() * current_speed
@@ -152,7 +152,8 @@ func eval_status():
 			Global.update_hud("health", "WOUNDED")
 			if status != last_status:
 				walking_stream.stream = limping
-				breathing_stream.play()
+				if !breathing_stream.playing:
+					breathing_stream.play()
 		SICK:
 			pass # Set camera to sick state sick state
 		DEAD:
