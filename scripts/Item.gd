@@ -5,8 +5,11 @@ export var count = 1
 
 var player = false
 
+var activated = false
+
 func _process(delta):
-	if player and Input.is_action_just_pressed("use"):
+	if player and Input.is_action_just_pressed("use") and !activated:
+		activated = true
 		$"PickUpSound".play()
 		Global.pick_up({item_name : self.count})
 		yield ($"PickUpSound", "finished")
