@@ -58,10 +58,10 @@ script = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="Soundtrack"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2( 328, 86 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Dialog" parent="." instance=ExtResource( 11 )]
+visible = false
 
 [connection signal="tween_completed" from="Soundtrack/Tween" to="Soundtrack" method="_on_Tween_tween_completed"]
