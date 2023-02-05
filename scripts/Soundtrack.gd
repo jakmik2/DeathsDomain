@@ -10,6 +10,7 @@ var actively_playing
 func _ready():
 	Global.connect("fade_volume", self, "fade_volume")
 	fade_in()
+	play()	
 	
 func fade_volume(direction):
 	if direction == "in":
@@ -18,13 +19,13 @@ func fade_volume(direction):
 		fade_out()
 		
 func fade_in():
-	tween_out.interpolate_property(self, "volume_db", -80, 0, transition_duration, transition_type, Tween.EASE_IN, 0)
+	tween_out.interpolate_property(self, "volume_db", -80, -10, transition_duration, transition_type, Tween.EASE_IN, 0)
 	tween_out.start()
 
 	actively_playing = true
 	
 func fade_out():
-	tween_out.interpolate_property(self, "volume_db", 0, -80, transition_duration, transition_type, Tween.EASE_IN, 0)
+	tween_out.interpolate_property(self, "volume_db", -10, -80, transition_duration, transition_type, Tween.EASE_IN, 0)
 	tween_out.start()
 
 	actively_playing = false
