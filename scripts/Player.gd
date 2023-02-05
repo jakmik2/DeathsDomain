@@ -48,16 +48,18 @@ func _ready():
 	walking_stream.stream = walking
 
 func _process(delta):	
+	if status == DEAD:
+		return
+	
 	# Check Status of player
 	if current_health > int(round(max_health / 2)):
 		status = FINE
 		max_speed = 100
-	elif current_health <= int(round(max_health / 2)):
+	elif current_health <= int(round(max_health / 2)) and current_health > 0:
 		status = WOUNDED
 		max_speed = 60
 	elif current_health <= 0:
 		status = DEAD
-	
 	eval_status()
 	update_inventory()
 
@@ -72,12 +74,12 @@ func _physics_process(delta):
 		limp_timer = 0
 		current_speed = max_speed
 	
-	if healing or swinging:
+	if healing or swinging or status == DEAD:
 		if walking_stream.playing:
 			walking_stream.stop()
 		return
 	
-	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0:
+	if Input.is_action_just_pressed("heal") and current_health < max_health and bandages > 0 and !healing and !swinging:
 		healing = true
 		if shaking:
 			apply_camera_shake()
@@ -90,19 +92,21 @@ func _physics_process(delta):
 		bandaging_stream.stop()
 		$"AnimationPlayer".play("idle")
 		
-	if Input.is_action_just_pressed("melee_attack"):
+	if Input.is_action_just_pressed("melee_attack") and !swinging:
 		swinging = true
-		if get_local_mouse_position().x > 0 and not $"PlayerSprite".flip_h:
-			$"PlayerSprite".scale.x = -1
-		else:
+		$PlayerSprite.flip_h = false
+		if get_local_mouse_position().x < 0:
 			$"PlayerSprite".scale.x = 1
+		else:
+			$"PlayerSprite".scale.x = -1
 		swinging_stream.play()
 		$"AnimationPlayer".play("attack")
 		yield($"AnimationPlayer", "animation_finished")
-		swinging = false
 		swinging_stream.stop()
 		$"AnimationPlayer".play("idle")
 		$"PlayerSprite".scale.x = 1
+		swinging = false
+		
 
 	
 	if Input.is_action_pressed("ui_up"):
@@ -231,9 +235,10 @@ func apply_camera_shake(amt=1,axis=0):
 	shaking = !shaking
 
 func death():
-	Global.play_camera_anim("out")
-	get_parent().get_parent().get_node("Dead").visable = true
-	get_tree().quit()
+	Global.play_camera_anim("fade_to_black")
+	yield(get_tree().create_timer(0.5), "timeout")
+	$"PlayerCam/Dead".visible = true
+	Global.play_camera_anim("black_screen")
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group("Enemy"):

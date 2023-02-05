@@ -16,7 +16,6 @@ var atk_rate = 0.3
 
 var alive = true
 
-
 var atk_pwr = 1
 
 # AI
@@ -44,7 +43,11 @@ func _physics_process(delta):
 	
 	if strategy == "reset":
 		velocity *= -1
-		resetting = true
+	
+	if velocity. x < 0:
+		$"Sprite".scale.x = -1
+	else:
+		$"Sprite".scale.x = 1
 	
 	if abs(velocity.x) > 0:
 		$"AnimationPlayer".play("walk")

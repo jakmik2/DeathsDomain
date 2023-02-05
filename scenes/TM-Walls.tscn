@@ -30,7 +30,6 @@ points = PoolVector2Array( 0, 32, 32, 16, 64, 32, 32, 48, 0, 32, 0, 32, 0, 32 )
 [sub_resource type="TileSet" id=3]
 0/name = "wall.png 0"
 0/texture = ExtResource( 1 )
-0/normal_map = ExtResource( 2 )
 0/tex_offset = Vector2( 0, -48 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 64, 80 )

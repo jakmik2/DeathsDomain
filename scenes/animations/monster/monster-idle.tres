@@ -16,15 +16,3 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 24, 25 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:normal_map")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
