@@ -2,6 +2,7 @@ extends Node2D
 
 export var code = "0"
 var status = "closed"
+var changing = false
 var code_from_levers = ""
 var levers = []
 
@@ -31,19 +32,23 @@ func check_code(instance_id):
 		return
 
 	if code == code_from_levers:
+		changing = true		
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", true)
+		status = "openned"
 		$"AudioStreamPlayer2D".play()
 		anim.play("Open")
-		status = "openned"
 		yield(anim,"animation_finished")
 		$"AudioStreamPlayer2D".stop()
+		changing = false
 	elif status == "openned":
+		changing = true
+		status = "closed"
 		$"AudioStreamPlayer2D".play()
 		anim.play("Close")
-		status = "closed"
 		yield(anim,"animation_finished")
 		$"AudioStreamPlayer2D".stop()
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", false)
+		changing = false
 	else:
 		$"StaticBody2D/CollisionPolygon2D".set_deferred("disabled", false)
 		

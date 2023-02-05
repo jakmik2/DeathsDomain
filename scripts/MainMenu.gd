@@ -7,7 +7,7 @@ func _ready():
 func _on_StartButton_pressed():
 	Global.play_camera_anim("fade_to_black")
 	yield(get_tree().create_timer(0.15), "timeout")
-	get_tree().change_scene("res://scenes/Levels/StartingLevel.tscn")
+	get_tree().change_scene("res://scenes/Levels/Level_1.tscn")
 	Global.play_camera_anim("fade_from_black")
 	
 func _on_OptionsButton_pressed():

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Lever.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Interactable Objects/Instructions/LeverInstruction_3.tscn" type="PackedScene" id=3]
+
+[node name="Labyrinth" instance=ExtResource( 1 )]
+
+[node name="TM-Ground" parent="." index="1"]
+tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 65539, 1, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 1, 0, 131075, 1, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 1, 0, 196611, 1, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 1, 0, 262147, 1, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 1, 0, 327683, 1, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0 )
+
+[node name="Player" parent="YSort" index="0"]
+position = Vector2( 166, 233 )
+
+[node name="LeverInstruction_3" parent="YSort" index="1" instance=ExtResource( 3 )]
+position = Vector2( 157, 165 )
+text_content = "These levers aren't all in the same position..{split}It seems to open some doors specific combinations need to be achieved."
+automatic_trigger = true
+deactivate_after_use = true
+
+[node name="TM-Walls" parent="YSort" index="2"]
+tile_data = PoolIntArray( 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 65538, 0, 0, 65547, 0, 0, 131074, 0, 0, 131083, 0, 0, 196610, 0, 0, 196619, 0, 0, 262146, 0, 0, 262155, 0, 0, 327682, 0, 0, 327691, 0, 0, 393218, 0, 0, 393227, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0 )
+
+[node name="NextLevel" parent="YSort" index="3"]
+position = Vector2( 288, 80 )
+nextLevel = "Level_4"
+
+[node name="ExitDoor" parent="YSort" index="4"]
+position = Vector2( 256, 144 )
+code = "110"
+
+[node name="Lever" parent="YSort/ExitDoor/Levers" index="0"]
+position = Vector2( -99, -3 )
+
+[node name="Lever2" parent="YSort/ExitDoor/Levers" index="1" instance=ExtResource( 2 )]
+position = Vector2( -196, -19 )
+
+[node name="Lever3" parent="YSort/ExitDoor/Levers" index="2" instance=ExtResource( 2 )]
+position = Vector2( 1, 46 )
+state = "1"
