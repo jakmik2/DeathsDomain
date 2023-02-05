@@ -26,7 +26,8 @@ func _process(delta):
 		yield(get_tree().create_timer($"AudioStreamPlayer2D".stream.get_length()), "timeout")
 		if $"AudioStreamPlayer2D".playing:
 			$"AudioStreamPlayer2D".stop()
-		yield(get_parent().get_parent().get_node("AnimationPlayer"), "animation_finished")
+		if get_parent().get_parent().changing:
+			yield(get_parent().get_parent().get_node("AnimationPlayer"), "animation_finished")
 		evaluating = false
 	if state == "1":
 		$Sprite.set_frame(0)

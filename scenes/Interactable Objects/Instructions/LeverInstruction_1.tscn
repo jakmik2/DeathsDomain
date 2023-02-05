@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Interactable Objects/BaseObject.tscn" type="PackedScene" id=1]
+
+[node name="LeverInstruction" instance=ExtResource( 1 )]
+text_content = "It seems this lever controls this door..."
+deactivate_after_use = true

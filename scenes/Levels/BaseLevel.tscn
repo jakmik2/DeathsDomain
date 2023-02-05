@@ -15,6 +15,13 @@
 [node name="Labyrinth" type="Node2D" groups=["cannot_damage"]]
 script = ExtResource( 9 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2422.0
+margin_top = -1602.0
+margin_right = 3799.0
+margin_bottom = 2153.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="TM-Ground" parent="." instance=ExtResource( 4 )]
 position = Vector2( 328, 86 )
 tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0 )
@@ -38,7 +45,7 @@ position = Vector2( 320, 64 )
 position = Vector2( 240, 120 )
 code = "1"
 
-[node name="Levers" type="Node2D" parent="YSort/ExitDoor"]
+[node name="Levers" type="YSort" parent="YSort/ExitDoor"]
 position = Vector2( 1, -12 )
 
 [node name="Lever" parent="YSort/ExitDoor/Levers" instance=ExtResource( 1 )]
@@ -58,6 +65,7 @@ script = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="Soundtrack"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2( 328, 86 )
 color = Color( 0, 0, 0, 1 )
 
