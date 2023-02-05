@@ -103,6 +103,7 @@ anims/RESET = SubResource( 2 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -32, -16 )
 stream = ExtResource( 3 )
+volume_db = -13.0
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( -32, -16 )

@@ -60,8 +60,7 @@ position = Vector2( -49, 38 )
 [node name="Soundtrack" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 328, 86 )
 stream = ExtResource( 7 )
-volume_db = -10.0
-autoplay = true
+volume_db = -80.0
 script = ExtResource( 10 )
 
 [node name="Tween" type="Tween" parent="Soundtrack"]
