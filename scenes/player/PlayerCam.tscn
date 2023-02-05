@@ -241,6 +241,7 @@ anims/idle = SubResource( 9 )
 anims/recoil = SubResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -490.0
 margin_top = -279.0
 margin_right = 537.0
