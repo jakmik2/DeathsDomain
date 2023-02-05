@@ -22,9 +22,6 @@ func _ready():
 	$"TerrainCollider".global_position = Vector2($"BulletSprite".global_position.x, $"BulletSprite".global_position.y + 15)
 
 func destroy():
-	var explosion_instance = explosion.instance()
-	explosion_instance.supplied_pos = $"BulletSprite".global_position
-	get_tree().root.get_node("/root/Labyrinth/YSort").add_child(explosion_instance)
 	queue_free()
 
 func _on_BulletCollider_body_entered(body):

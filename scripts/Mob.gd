@@ -55,6 +55,7 @@ func hurt(dmg):
 	if health > 0:
 		health -= dmg
 		anim.play("Hurt")
+		anim.play("small-blood")
 		yield(anim, "animation_finished")
 		anim.play("Idle")
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hand-recoil.png-bf15e8de0d2e9f77382703da17e50a3e.stex"
+path="res://.import/monster-hurt.png-a948b66aaf8ff316a6761588e5749bdc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/hand-recoil.png"
-dest_files=[ "res://.import/hand-recoil.png-bf15e8de0d2e9f77382703da17e50a3e.stex" ]
+source_file="res://Sprites/animatedSprites/monster-hurt.png"
+dest_files=[ "res://.import/monster-hurt.png-a948b66aaf8ff316a6761588e5749bdc.stex" ]
 
 [params]
 

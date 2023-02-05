@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player-hand.png-f806b4a670e8cc79332f948582931766.stex"
+path="res://.import/blood-splat.png-248b474b5300f6542fd02dd7025639f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/player-hand.png"
-dest_files=[ "res://.import/player-hand.png-f806b4a670e8cc79332f948582931766.stex" ]
+source_file="res://Sprites/animatedSprites/blood-splat.png"
+dest_files=[ "res://.import/blood-splat.png-248b474b5300f6542fd02dd7025639f4.stex" ]
 
 [params]
 
